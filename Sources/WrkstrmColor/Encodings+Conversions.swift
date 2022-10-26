@@ -8,11 +8,7 @@ extension XYZ {
     if c <= 0.003_130_8 {
       return 12.92 * c
     }
-#if os(OSX)
-    return Value(1.055 * pow(Float80(c), 1 / 2.4) - 0.055)
-#else
     return Value(1.055 * pow(Double(c), 1 / 2.4) - 0.055)
-#endif
   }
 
   var toRGB: RGB<Value> {
@@ -57,11 +53,7 @@ extension XYZ {
     if y <= Constant.epsilon() {
       return y * Constant.kappa()
     }
-#if os(OSX)
-    return Value(116 * pow(Float80(y), 1 / 3) - 16)
-#else
     return Value(116 * pow(Double(y), 1 / 3) - 16)
-#endif
   }
 
   var toLuv: LUV<Value> {
@@ -88,11 +80,7 @@ extension LUV {
     if l <= 8 {
       return l / Constant.kappa()
     }
-#if os(OSX)
-    return Value(pow(Float80((l + 16) / 116), 3))
-#else
     return Value(pow(Double((l + 16) / 116), 3))
-#endif
   }
 
   var toXYZ: XYZ<Value> {
@@ -120,21 +108,13 @@ extension LUV {
 public extension LUV {
 
   var toLch: LCH<Value> {
-#if os(OSX)
-    let c = Value(sqrt(pow(Float80(u), 2) + pow(Float80(v), 2)))
-#else
     let c = Value(sqrt(pow(Double(u), 2) + pow(Double(v), 2)))
-#endif
 
     guard c >= 0.000_000_01 else {
       // Greys: disambiguate hue
       return LCH(l: l, c: c, h: 0)
     }
-#if os(OSX)
-    let hRad = Value(atan2(Float80(v), Float80(u)))
-#else
     let hRad = Value(atan2(Double(v), Double(u)))
-#endif  // os(OSX)
     var h = hRad * 360 / 2 / .pi
 
     if h < 0 {
@@ -149,13 +129,8 @@ public extension LCH {
 
   var toLUV: LUV<Value> {
     let hRad = h / 360 * 2 * .pi
-#if os(OSX)
-    let u = Value(cos(Float80(hRad))) * c
-    let v = Value(sin(Float80(hRad))) * c
-#else
     let u = Value(cos(Double(hRad))) * c
     let v = Value(sin(Double(hRad))) * c
-#endif  // os(OSX)
     return LUV(l: l, u: u, v: v)
   }
 }
