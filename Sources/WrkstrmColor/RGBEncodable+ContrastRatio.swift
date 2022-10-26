@@ -90,7 +90,8 @@ extension RGBEncodable {
   /// 3.0:1 for larger text.
   func sufficientContrast<RGB: RGBEncodable>(
     to other: RGB,
-    with font: UIFont = .systemFont(ofSize: UIFont.smallSystemFontSize)) -> Bool {
+    with font: UIFont = .systemFont(ofSize: UIFont.smallSystemFontSize)) -> Bool
+  {
     let pointSizeThreshold: Value = font.isBold ? 14.0 : 18.0
     let contrastRatioThreshold: Value =
       Value(font.fontDescriptor.pointSize) < pointSizeThreshold ? 4.5 : 3.0

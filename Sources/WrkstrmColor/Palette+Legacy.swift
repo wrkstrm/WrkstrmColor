@@ -7,7 +7,8 @@ extension Palette {
   static func rgb(
     for gradient: Gradient,
     index: Int,
-    count: Int, reversed: Bool = false) -> RGB<Double> {
+    count: Int, reversed: Bool = false) -> RGB<Double>
+  {
     var newIndex = Double(index)
     var newCount = Double(count)
 
@@ -92,25 +93,27 @@ extension Palette {
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension Palette {
+public extension Palette {
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  public static func hsluv(
+  static func hsluv(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color {
+    reversed: Bool = false) -> Color
+  {
     let color: HSLuv<CGFloat> =
       hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
     return Color(hsluv: color, opacity: 1)
   }
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  public static func color(
+  static func color(
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color {
+    reversed: Bool = false) -> Color
+  {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -119,11 +122,12 @@ extension Palette {
   }
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  public static func color(
+  static func color(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color {
+    reversed: Bool = false) -> Color
+  {
     let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
     return Color(
       red: color.r / 255.0,
@@ -138,23 +142,25 @@ extension Palette {
 #if canImport(UIKit)
 import UIKit
 
-extension Palette {
+public extension Palette {
 
-  public static func hsluv(
+  static func hsluv(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor {
+    reversed: Bool = false) -> UIColor
+  {
     let color: HSLuv<CGFloat> =
       hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
     return UIColor(hsluv: color, alpha: 1)
   }
 
-  public static func color(
+  static func color(
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor {
+    reversed: Bool = false) -> UIColor
+  {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -162,11 +168,12 @@ extension Palette {
       reversed: reversed)
   }
 
-  public static func color(
+  static func color(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor {
+    reversed: Bool = false) -> UIColor
+  {
     let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
     return UIColor(
       red: CGFloat(color.r / 255.0),
@@ -181,23 +188,25 @@ extension Palette {
 #if os(OSX)
 import Cocoa
 
-extension Palette {
+public extension Palette {
 
-  public static func hsluv(
+  static func hsluv(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor {
+    reversed: Bool = false) -> NSColor
+  {
     let color: HSLuv<CGFloat> = hsluvGradient(
       for: gradient, index: index, count: count, reversed: reversed)
     return NSColor(hsluv: color, alpha: 1)
   }
 
-  public static func color(
+  static func color(
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor {
+    reversed: Bool = false) -> NSColor
+  {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -205,11 +214,12 @@ extension Palette {
       reversed: reversed)
   }
 
-  public static func color(
+  static func color(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor {
+    reversed: Bool = false) -> NSColor
+  {
     let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
     return NSColor(
       red: CGFloat(color.r / 255.0),

@@ -75,9 +75,9 @@ enum Constant {
 /// - parameter lightness: Double
 func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 #if os(OSX)
-  let sub1: Value = Value(pow(Float80(lightness) + 16, 3) / 1_560_896)
+  let sub1 = Value(pow(Float80(lightness) + 16, 3) / 1_560_896)
 #else
-  let sub1: Value = Value(pow(Double(lightness) + 16, 3) / 1_560_896)
+  let sub1 = Value(pow(Double(lightness) + 16, 3) / 1_560_896)
 #endif  // os(OSX)
   let sub2: Value = sub1 > Constant.epsilon() ? sub1 : lightness / Constant.kappa()
 
@@ -103,7 +103,8 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 
 func intersectLine<Value: ComponentValue>(
   _ line1: Vector<Value>,
-  _ line2: Vector<Value>) -> Value {
+  _ line2: Vector<Value>) -> Value
+{
   (line1.1 - line2.1) / (line2.0 - line1.0)
 }
 

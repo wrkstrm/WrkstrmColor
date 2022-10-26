@@ -16,7 +16,7 @@ extension XYZ {
   }
 
   var toRGB: RGB<Value> {
-    let components = self.components
+    let components = components
     let r = fromLinear(dotProduct(Constant.m().R, b: components))
     let g = fromLinear(dotProduct(Constant.m().G, b: components))
     let b = fromLinear(dotProduct(Constant.m().B, b: components))
@@ -117,9 +117,9 @@ extension LUV {
 
 // MARK: - LUV / LCH Conversion
 
-extension LUV {
+public extension LUV {
 
-  public var toLch: LCH<Value> {
+  var toLch: LCH<Value> {
 #if os(OSX)
     let c = Value(sqrt(pow(Float80(u), 2) + pow(Float80(v), 2)))
 #else
@@ -145,9 +145,9 @@ extension LUV {
   }
 }
 
-extension LCH {
+public extension LCH {
 
-  public var toLUV: LUV<Value> {
+  var toLUV: LUV<Value> {
     let hRad = h / 360 * 2 * .pi
 #if os(OSX)
     let u = Value(cos(Float80(hRad))) * c
@@ -177,9 +177,9 @@ func maxChroma<Value: ComponentValue>(lightness: Value, hue: Value) -> Value {
   return lengths.reduce(.greatestFiniteMagnitude) { min($0, $1) }
 }
 
-extension HSLuv {
+public extension HSLuv {
 
-  public var toLch: LCH<Value> {
+  var toLch: LCH<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate chroma
       return LCH(l: l, c: 0, h: h)
@@ -192,9 +192,9 @@ extension HSLuv {
   }
 }
 
-extension LCH {
+public extension LCH {
 
-  public var toHSLuv: HSLuv<Value> {
+  var toHSLuv: HSLuv<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate saturation
       return HSLuv(h: Value(h), s: Value(0), l: Value(l))
@@ -226,9 +226,9 @@ func maxChroma<Value: ComponentValue>(lightness: Value) -> Value {
   return lengths.reduce(.greatestFiniteMagnitude) { min($0, $1) }
 }
 
-extension HPLuv {
+public extension HPLuv {
 
-  public var toLCH: LCH<Value> {
+  var toLCH: LCH<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate chroma
       return LCH(l: 1, c: 0, h: h)
@@ -241,9 +241,9 @@ extension HPLuv {
   }
 }
 
-extension LCH {
+public extension LCH {
 
-  public var toHPLuv: HPLuv<Value> {
+  var toHPLuv: HPLuv<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate saturation
       return HPLuv(h: Value(h), s: Value(0), l: Value(l))
@@ -258,14 +258,14 @@ extension LCH {
 
 // MARK: - RGB / Hex Conversion
 
-extension RGB {
+public extension RGB {
 
-  public func round(_ value: Double, places: Double) -> Double {
+  func round(_ value: Double, places: Double) -> Double {
     let divisor = pow(10.0, places)
     return Foundation.round(value * divisor) / divisor
   }
 
-  public func getHexString(_ channel: Double) -> String {
+  func getHexString(_ channel: Double) -> String {
     // swiftlint:disable:next identifier_name
     var ch = round(channel, places: 6)
 
@@ -282,20 +282,20 @@ extension RGB {
       startingAt: 0)
   }
 
-  public var toHex: Hex {
-    let r = getHexString(Double(self.r))
-    let g = getHexString(Double(self.g))
-    let b = getHexString(Double(self.b))
+  var toHex: Hex {
+    let r = getHexString(Double(r))
+    let g = getHexString(Double(g))
+    let b = getHexString(Double(b))
 
     return Hex("#\(r)\(g)\(b)")
   }
 }
 
-extension Hex {
+public extension Hex {
 
   // This function is based on a comment by mehawk on gist arshad/de147c42d7b3063ef7bc.
-  public func toRgb<Value: ComponentValue>() -> RGB<Value> {
-    let string = self.string.replacingOccurrences(of: "#", with: "")
+  func toRgb<Value: ComponentValue>() -> RGB<Value> {
+    let string = string.replacingOccurrences(of: "#", with: "")
 
     var rgbValue: UInt64 = 0
 

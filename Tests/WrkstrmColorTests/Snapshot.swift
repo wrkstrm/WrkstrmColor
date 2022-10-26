@@ -27,7 +27,8 @@ class Snapshot {
   static var stable: SnapshotType = {
     guard let url = Bundle(for: Snapshot.self).url(
       forResource: "snapshot-rev4",
-      withExtension: "json") else {
+      withExtension: "json")
+    else {
       print("Snapshot JSON file is missing. Swift packages still can't contain resources.")
       return SnapshotType()
     }
@@ -70,7 +71,8 @@ class Snapshot {
                                                _ stableTuple: [Double],
                                                _ currentTuple: [Double],
                                                _ stableChannel: Double,
-                                               _ currentChannel: Double) -> Void) {
+                                               _ currentChannel: Double) -> Void)
+  {
 
     for (hex, stableSamples) in stable {
       guard let currentSamples = current[hex] else {
@@ -88,7 +90,8 @@ class Snapshot {
 
         for i in [0...2] {
           guard let stableChannel = stableTuple[i].first,
-            let currentChannel = currentTuple[i].first else {
+                let currentChannel = currentTuple[i].first
+          else {
             fatalError("Current channel is missing at \(hex):\(tag):\(i)")
           }
 

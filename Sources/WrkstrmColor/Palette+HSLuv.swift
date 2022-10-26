@@ -1,11 +1,12 @@
-extension Palette {
+public extension Palette {
 
   // swiftlint:disable:next function_body_length
-  public static func hsluvGradient<V: BinaryFloatingPoint>(
+  static func hsluvGradient<V: BinaryFloatingPoint>(
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> HSLuv<V> {
+    reversed: Bool = false) -> HSLuv<V>
+  {
     var dIndex = V(index)
     let dCount = V(count)
 

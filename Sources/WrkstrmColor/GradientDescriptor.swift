@@ -58,11 +58,12 @@ public protocol Gradient {
   var cRange: Delta<S.Value> { get }
 }
 
-extension Gradient {
+public extension Gradient {
 
-  public func ratioCalculator(
+  func ratioCalculator(
     delta: Delta<S.Value>,
-    ratio: S.Value) -> S.Value {
+    ratio: S.Value) -> S.Value
+  {
     switch delta.type {
     case .static:
       return delta.range.lowerBound
@@ -75,7 +76,7 @@ extension Gradient {
     }
   }
 
-  public func color(for index: S.Value, count: S.Value) -> S {
+  func color(for index: S.Value, count: S.Value) -> S {
     let ratio = index / count
 
     let aNewComponent = ratioCalculator(delta: aRange, ratio: ratio)
@@ -88,7 +89,7 @@ extension Gradient {
     return S.scaled(newComponents: newComponents)
   }
 
-  public func first() -> S {
+  func first() -> S {
     let a = aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound
 
     let b = bRange.type == .decreasing ? bRange.range.upperBound : bRange.range.lowerBound
@@ -98,7 +99,7 @@ extension Gradient {
     return S.scaled(newComponents: (a, b, c))
   }
 
-  public func mid() -> S {
+  func mid() -> S {
     let a =
       (aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound)
         + aRange.magnitude / 2
@@ -114,7 +115,7 @@ extension Gradient {
     return S.scaled(newComponents: (a, b, c))
   }
 
-  public func last() -> S {
+  func last() -> S {
     let a = aRange.type == .decreasing ? aRange.range.lowerBound : aRange.range.upperBound
 
     let b = bRange.type == .decreasing ? bRange.range.lowerBound : bRange.range.upperBound
@@ -139,7 +140,8 @@ public struct GradientDescriptor<S: Scalable>: Gradient {
     count: Int,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>) {
+    cRange: Delta<S.Value>)
+  {
     self.count = count
     self.aRange = aRange
     self.bRange = bRange
@@ -161,7 +163,8 @@ public struct ContrastGradientDescriptor<S: Scalable & RGBEncodable>: Gradient {
     minContrast: S.Value,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>) {
+    cRange: Delta<S.Value>)
+  {
     self.minContrast = minContrast
     self.aRange = aRange
     self.bRange = bRange
