@@ -6,7 +6,7 @@ import XCTest
 
 typealias SnapshotType = [String: [String: [Double]]]
 
-//swiftlint:disable:next convenience_type
+// swiftlint:disable:next convenience_type
 class Snapshot {
 
   static var hexSamples: [String] = {
@@ -32,13 +32,13 @@ class Snapshot {
       return SnapshotType()
     }
 
-    //swiftlint:disable:next force_try
+    // swiftlint:disable:next force_try
     let jsonData = try! Data(contentsOf: url, options: .mappedIfSafe)
-    //swiftlint:disable:next force_try
+    // swiftlint:disable:next force_try
     let jsonResult = try! JSONSerialization.jsonObject(
       with: jsonData,
       options: .mutableContainers) as! SnapshotType
-    //swiftlint:disable:previous force_cast
+    // swiftlint:disable:previous force_cast
     return jsonResult
   }()
 

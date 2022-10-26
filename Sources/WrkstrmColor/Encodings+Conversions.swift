@@ -28,7 +28,7 @@ extension XYZ {
 extension RGB {
 
   func toLinear(_ component: Value) -> Value {
-    let c_055 = 0.055  //swiftlint:disable:this identifier_name
+    let c_055 = 0.055  // swiftlint:disable:this identifier_name
     if component > 0.040_45 {
       return Value(pow((Double(component) + c_055) / (1.0 + c_055), 2.4))
     }
@@ -215,9 +215,9 @@ extension LCH {
 func maxChroma<Value: ComponentValue>(lightness: Value) -> Value {
   var lengths = [Value]()
 
-  //swiftlint:disable:next identifier_name
+  // swiftlint:disable:next identifier_name
   for (m1, b1) in getBounds(lightness: lightness) {
-    //swiftlint:disable:previous identifier_name
+    // swiftlint:disable:previous identifier_name
     // x where line intersects with perpendicular running though (0, 0)
     let x = intersectLine((m1, b1), (-1 / m1, 0))
     lengths.append(distanceFromPole((x, b1 + x * m1)))
@@ -266,7 +266,7 @@ extension RGB {
   }
 
   public func getHexString(_ channel: Double) -> String {
-    //swiftlint:disable:next identifier_name
+    // swiftlint:disable:next identifier_name
     var ch = round(channel, places: 6)
 
     if ch < 0 || ch > 1 {

@@ -85,9 +85,9 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 
   let mirror = Mirror(reflecting: Constant.m() as MType<Value>)
   for (_, value) in mirror.children {
-    //swiftlint:disable:next identifier_name force_cast
-    let (m1, m2, m3) = value as! Components<Value>  //swiftlint:disable:this identifier_name
-    //swiftlint:disable:previous identifier_name
+    // swiftlint:disable:next identifier_name force_cast
+    let (m1, m2, m3) = value as! Components<Value>  // swiftlint:disable:this identifier_name
+    // swiftlint:disable:previous identifier_name
     let targets: [Value] = [0.0, 1.0]
     targets.forEach { target in
       let top1: Value = (284_517 * m1 - 94_839 * m3) * sub2
@@ -128,7 +128,7 @@ func lengthOfRayUntilIntersect<Value: ComponentValue>(theta: Value, line: Vector
   // b = length * (sin(hrad) - m * cos(hrad))
   // len = b / (sin(hrad) - m * cos(hrad))
 
-  //swiftlint:disable:next identifier_name identifier_name
+  // swiftlint:disable:next identifier_name identifier_name
   let (m1, b1) = line
 #if os(OSX)
   let length = b1 / Value(sin(Float80(theta)) - Float80(m1) * cos(Float80(theta)))

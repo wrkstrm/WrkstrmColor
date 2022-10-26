@@ -49,7 +49,7 @@ public protocol Scalable {
 
 public protocol Gradient {
 
-  associatedtype S: Scalable  //swiftlint:disable:this type_name
+  associatedtype S: Scalable  // swiftlint:disable:this type_name
 
   var aRange: Delta<S.Value> { get }
 

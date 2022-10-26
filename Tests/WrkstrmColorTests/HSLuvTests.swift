@@ -76,7 +76,7 @@ class HSLuvTests: XCTestCase {
     let assert =
       Snapshot.compare(Snapshot.current)
     { [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
-      //swiftlint:disable:previous opening_brace
+      // swiftlint:disable:previous opening_brace
       let diff = abs(currentChannel - stableChannel)
 
       XCTAssertLessThan(
