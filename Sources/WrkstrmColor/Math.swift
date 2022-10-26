@@ -75,7 +75,7 @@ enum Constant {
 /// - parameter lightness: Double
 func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 #if os(OSX)
-  let sub1 = Value(pow(Float80(lightness) + 16, 3) / 1_560_896)
+  let sub1 = Value(pow(Float80(lightness) + Float80(16), 3) / 1_560_896)
 #else
   let sub1 = Value(pow(Double(lightness) + 16, 3) / 1_560_896)
 #endif  // os(OSX)
@@ -132,7 +132,7 @@ func lengthOfRayUntilIntersect<Value: ComponentValue>(theta: Value, line: Vector
   // swiftlint:disable:next identifier_name identifier_name
   let (m1, b1) = line
 #if os(OSX)
-  let length = b1 / Value(sin(Float80(theta)) - Float80(m1) * cos(Float80(theta)))
+  let length = Float80(b1) / Value(sin(Float80(theta)) - Float80(m1) * cos(Float80(theta)))
 #else
   let length = b1 / Value(sin(Double(theta)) - Double(m1) * cos(Double(theta)))
 #endif  // os(OSX)
