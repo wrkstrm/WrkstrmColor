@@ -24,6 +24,6 @@ let package = Package(
     .testTarget(
       name: "WrkstrmColorTests",
       dependencies: ["WrkstrmColor"],
-      resources: [.copy("Resources/snapshot-rev4.json"), .copy("Resources/README.md")],
+      resources: [.copy("Resources/snapshot-rev4.json")],
       swiftSettings: [.define("SPM")]),
   ])
