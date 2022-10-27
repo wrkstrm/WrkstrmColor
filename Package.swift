@@ -21,5 +21,9 @@ let package = Package(
   // this package depends on.
   targets: [
     .target(name: "WrkstrmColor", dependencies: []),
-    .testTarget(name: "WrkstrmColorTests", dependencies: ["WrkstrmColor"]),
+    .testTarget(
+      name: "WrkstrmColorTests",
+      dependencies: ["WrkstrmColor"],
+      resources: [.copy("Resources/snapshot-rev4.json"), .copy("Resources/README.md")],
+      swiftSettings: [.define("SPM")]),
   ])
