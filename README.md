@@ -1,5 +1,7 @@
 # WrkstrmColor
 
+[![wrkstrm-color](https://github.com/wrkstrm/laussat/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/laussat/actions/workflows/wrkstrm-color-build.yml)
+
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
 The `wrkstrm` port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy of [Clay Smith](https://github.com/stphnclysmth)
