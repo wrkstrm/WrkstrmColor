@@ -1,8 +1,5 @@
-# HSLuvColor
+# WrkstrmColor
 
-[![Cocoapod compatible](https://img.shields.io/cocoapods/v/HSLuvColor.svg)](https://cocoapods.org/pods/HSLuvColor)
-[![Carthage compatible](https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/hsluv/hsluv-swift.svg?branch=master)](https://travis-ci.org/wrkstrm/hsluv-color)
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
 wrkstrm port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy of [Clay Smith](https://github.com/stphnclysmth)
