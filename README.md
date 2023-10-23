@@ -18,33 +18,6 @@ let color = NSColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 let color = UIColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 ```
 
-
-## INSTALL
-
-This project is compatible with CocoaPods and Carthage. (These instructions assume that your chosen method is already installed.)
-
-### CocoaPods
-
-Add `pod 'HSLuvColor'` to your target. Since this is a Swift dynamic framework, you must also tell CocoaPods to `use_frameworks!` instead of static libraries.
-
-```ruby
-platform :ios, '8.0' # or, :osx, '10.11'
-use_frameworks!
-
-target 'YourProject' do
-    pod 'HSLuvColor', '~> '0.9.4'
-end
-```
-
-### Carthage
-
-Add `github "wrkstrm/hsluv-color" ~> `0.9.4` to your Cartfile and run `carthage bootstrap`. This builds frameworks for Mac and iOS targets.
-
-```sh
-> echo 'github "wrkstrm/hsluv-wkstrm" ~> '0.9.4' >> Cartfile
-> carthage bootstrap
-```
-
 ## TODO
 
 * Finish HPLuv implementation
