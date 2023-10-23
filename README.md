@@ -2,7 +2,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
-wrkstrm port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy of [Clay Smith](https://github.com/stphnclysmth)
+The `wrkstrm` port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy of [Clay Smith](https://github.com/stphnclysmth)
 
 [Explanation, demo, ports etc.](http://www.hsluv.org)
 
@@ -22,7 +22,6 @@ let color = UIColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 
 * Finish HPLuv implementation
 * Improve tests and add continuous integration testing
-* Add Carthage instructions
 * Add usage documentation
 
 ## License
