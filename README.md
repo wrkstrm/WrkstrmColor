@@ -10,10 +10,10 @@ The `wrkstrm` port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy 
 
 ## USAGE
 
-This framework adds a single initializer on the OS-specific color class to create a color from HSLuv parameters. The initializer takes the same parameters on both OSX and iOS.
+This framework adds a single initializer on the OS-specific color class to create a color from HSLuv parameters. The initializer takes the same parameters on both macOS and iOS.
 
 ```swift
-// OSX
+// macOS
 let color = NSColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 
 // iOS
