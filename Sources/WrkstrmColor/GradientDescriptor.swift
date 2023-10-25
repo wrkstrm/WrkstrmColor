@@ -66,13 +66,13 @@ public extension Gradient {
   {
     switch delta.type {
     case .static:
-      delta.range.lowerBound
+      return delta.range.lowerBound
 
     case .increasing:
-      delta.range.lowerBound + delta.magnitude * ratio
+      return delta.range.lowerBound + delta.magnitude * ratio
 
     case .decreasing:
-      delta.range.upperBound - delta.magnitude * ratio
+      return delta.range.upperBound - delta.magnitude * ratio
     }
   }
 
