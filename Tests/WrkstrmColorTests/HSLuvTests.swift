@@ -1,6 +1,7 @@
 import Foundation
-@testable import WrkstrmColor
 import XCTest
+
+@testable import WrkstrmColor
 
 // TODO: Add HPLuv tests
 
@@ -71,18 +72,18 @@ class HSLuvTests: XCTestCase {
 
   func testSnapshot() {
     let assert =
-      Snapshot.compare(Snapshot.current)
-        { [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
-          // swiftlint:disable:previous opening_brace
-          let diff = abs(currentChannel - stableChannel)
+      Snapshot.compare(Snapshot.current) {
+        [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
+        // swiftlint:disable:previous opening_brace
+        let diff = abs(currentChannel - stableChannel)
 
-          XCTAssertLessThan(
-            diff,
-            snapshotTolerance,
-            """
-            Snapshots for \(hex) don't match at \(tag):
-            (stable: \(stableTuple), current: \(currentTuple)
-            """)
-        } // swiftlint:disable:this closure_end_indentation
+        XCTAssertLessThan(
+          diff,
+          snapshotTolerance,
+          """
+          Snapshots for \(hex) don't match at \(tag):
+          (stable: \(stableTuple), current: \(currentTuple)
+          """)
+      }
   }
 }

@@ -1,6 +1,7 @@
 import Foundation
-@testable import WrkstrmColor
 import XCTest
+
+@testable import WrkstrmColor
 
 #if canImport(UIKit)
 import CoreGraphics
@@ -12,10 +13,11 @@ class UIKitTests: XCTestCase {
     for h in stride(from: 0, through: 360, by: 5) {
       for s in stride(from: 0, through: 100, by: 5) {
         for l in stride(from: 0, through: 100, by: 5) {
-          let color = UIColor(hsluv: .init(
-            h: CGFloat(h),
-            s: CGFloat(s),
-            l: CGFloat(l)), alpha: 1.0)
+          let color = UIColor(
+            hsluv: .init(
+              h: CGFloat(h),
+              s: CGFloat(s),
+              l: CGFloat(l)), alpha: 1.0)
 
           XCTAssertNotNil(color)
 

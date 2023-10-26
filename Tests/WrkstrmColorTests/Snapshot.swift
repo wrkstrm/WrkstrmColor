@@ -1,5 +1,6 @@
-@testable import WrkstrmColor
 import XCTest
+
+@testable import WrkstrmColor
 
 // TODO: Add HPLuv support
 
@@ -25,7 +26,8 @@ class Snapshot {
 
   static var stable: SnapshotDictionary = {
     let testBundle = Bundle(for: Snapshot.self)
-    guard let resourceBundlePath = testBundle.paths(forResourcesOfType: "bundle", inDirectory: nil)
+    guard
+      let resourceBundlePath = testBundle.paths(forResourcesOfType: "bundle", inDirectory: nil)
       .first(where: { $0.contains("Resources") }),
       let resourceBunble = Bundle(path: resourceBundlePath),
       let jsonURL = resourceBunble.url(forResource: "snapshot-rev4", withExtension: "json"),
@@ -63,13 +65,15 @@ class Snapshot {
     return current
   }()
 
-  static func compare(_: SnapshotDictionary,
-                      block: (_ hex: String,
-                              _ tag: String,
-                              _ stableTuple: [Double],
-                              _ currentTuple: [Double],
-                              _ stableChannel: Double,
-                              _ currentChannel: Double) -> Void)
+  static func compare(
+    _: SnapshotDictionary,
+    block: (
+      _ hex: String,
+      _ tag: String,
+      _ stableTuple: [Double],
+      _ currentTuple: [Double],
+      _ stableChannel: Double,
+      _ currentChannel: Double) -> Void)
   {
 
     for (hex, stableSamples) in stable {

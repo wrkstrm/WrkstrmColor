@@ -1,6 +1,7 @@
 import Foundation
-@testable import WrkstrmColor
 import XCTest
+
+@testable import WrkstrmColor
 
 // TODO: Add HPLuv tests
 
