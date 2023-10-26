@@ -23,7 +23,7 @@ public extension Color {
   /// - parameter hsluv: HSLuv
   /// - parameter opacity: Double
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  init(hsluv: HSLuv<some BinaryFloatingPoint>, opacity: Double) {
+  init<Value: BinaryFloatingPoint>(hsluv: HSLuv<Value>, opacity: Double) {
     let rgb = hsluvToRgb(hsluv)
     self.init(red: Double(rgb.r), green: Double(rgb.g), blue: Double(rgb.b), opacity: opacity)
   }
@@ -34,7 +34,7 @@ public extension Color {
   /// - parameter hpluv: HPLuv
   /// - parameter opacity: Double
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  init(hpluv: HPLuv<some BinaryFloatingPoint>, opacity: Double) {
+  init<Value: BinaryFloatingPoint>(hpluv: HPLuv<Value>, opacity: Double) {
     let rgb = hpluvToRgb(hpluv)
     self.init(
       red: Double(rgb.r),
@@ -66,7 +66,7 @@ public extension UIColor {
   ///
   /// - parameter hsluv: HSLuv<CGFloat>
   /// - parameter alpha: CGFloat
-  convenience init(hsluv: HSLuv<some BinaryFloatingPoint>, alpha: CGFloat) {
+  convenience init<Value: BinaryFloatingPoint>(hsluv: HSLuv<Value>, alpha: CGFloat) {
     let rgb = hsluvToRgb(hsluv)
     self.init(red: CGFloat(rgb.r), green: CGFloat(rgb.g), blue: CGFloat(rgb.b), alpha: alpha)
   }
