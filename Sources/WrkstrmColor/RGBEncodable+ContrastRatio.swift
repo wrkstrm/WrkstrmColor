@@ -18,11 +18,10 @@ extension RGBEncodable {
   }
 
   func invGamSRGB(inverseColor: Value) -> Value {
-    if inverseColor <= 0.039_28 {
-      return inverseColor / 12.92
-    } else {
+    guard inverseColor <= 0.039_28 else {
       return Value(pow(Double((inverseColor + 0.055) / 1.055), 2.4))
     }
+    return inverseColor / 12.92
   }
 
   /// Contrast ratio between two colors according to W3's WCAG 2.0:

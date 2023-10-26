@@ -77,7 +77,7 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
   let sub1 = Value(pow(Double(lightness) + 16, 3) / 1_560_896)
   let sub2: Value = sub1 > Constant.epsilon() ? sub1 : lightness / Constant.kappa()
 
-  var result = [Vector<Value>]()
+  var result: [Vector<Value>] = []
 
   let mirror = Mirror(reflecting: Constant.m() as MType<Value>)
   for (_, value) in mirror.children {

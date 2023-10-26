@@ -11,11 +11,10 @@ extension GradientDescriptor: Sequence {
     var index = 0
     return AnyIterator<S> {
       defer { index += 1 }
-      if index <= self.count {
-        return self.color(for: S.Value(index), count: S.Value(self.count))
-      } else {
+      guard index <= self.count else {
         return nil
       }
+      return self.color(for: S.Value(index), count: S.Value(self.count))
     }
   }
 }

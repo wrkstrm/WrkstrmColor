@@ -142,7 +142,7 @@ public extension LCH {
 func maxChroma<Value: ComponentValue>(lightness: Value, hue: Value) -> Value {
   let hrad = hue / 360 * 2 * .pi
 
-  var lengths = [Value]()
+  var lengths: [Value] = []
   for line in getBounds(lightness: lightness) {
     if let length = lengthOfRayUntilIntersect(theta: hrad, line: line) {
       lengths.append(length)
@@ -188,7 +188,7 @@ public extension LCH {
 /// below this number will ensure that for any hue, the color is within the RGB
 /// gamut.
 func maxChroma<Value: ComponentValue>(lightness: Value) -> Value {
-  var lengths = [Value]()
+  var lengths: [Value] = []
 
   // swiftlint:disable:next identifier_name
   for (m1, b1) in getBounds(lightness: lightness) {
