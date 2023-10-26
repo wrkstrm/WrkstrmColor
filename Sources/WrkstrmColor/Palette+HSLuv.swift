@@ -1,6 +1,5 @@
 public extension Palette {
 
-  // swiftlint:disable:next function_body_length
   static func hsluvGradient<V: BinaryFloatingPoint>(
     for gradient: Gradient,
     index: Int,
