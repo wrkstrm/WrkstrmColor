@@ -27,7 +27,7 @@ extension RGBEncodable {
 
   /// Contrast ratio between two colors according to W3's WCAG 2.0:
   /// https://www.w3.org/TR/WCAG20/#contrast-ratiodef
-  func contrastRatio<RGB: RGBEncodable>(to other: RGB) -> Value {
+  func contrastRatio(to other: some RGBEncodable) -> Value {
     let ourLuminance = luminance
     let theirLuminance = other.luminance
     let lighterColor = Value(min(Double(ourLuminance), Double(theirLuminance)))
@@ -88,8 +88,8 @@ extension RGBEncodable {
   /// The recommendation is that the contrast ratio between text and its
   /// background should be at least 4.5:1 for small text and at least
   /// 3.0:1 for larger text.
-  func sufficientContrast<RGB: RGBEncodable>(
-    to other: RGB,
+  func sufficientContrast(
+    to other: some RGBEncodable,
     with font: UIFont = UIFont.preferredFont(forTextStyle: .body)) -> Bool
   {
     let pointSizeThreshold: Value = font.isBold ? 14.0 : 18.0
