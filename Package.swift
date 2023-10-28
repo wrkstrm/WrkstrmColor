@@ -10,9 +10,6 @@ let package = Package(
   products: [
     .library(name: "WrkstrmColor", targets: ["WrkstrmColor"]),
   ],
-  dependencies: [
-    // .package(url: /* package url */, from: "1.0.0"),
-  ],
   targets: [
     .target(name: "WrkstrmColor", dependencies: []),
     .testTarget(
