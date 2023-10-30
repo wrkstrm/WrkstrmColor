@@ -1,6 +1,5 @@
 /// Hexadecimal color
 public struct Hex {
-
   public let string: String
 
   public init(_ string: String) {
@@ -9,13 +8,11 @@ public struct Hex {
 }
 
 public protocol RGBEncodable: ComponentConvertible {
-
   func rgbComponents() -> Components<Value>
 }
 
 /// Red, Green, Blue (RGB)
 public struct RGB<Value: BinaryFloatingPoint>: ComponentConvertible, RGBEncodable {
-
   /// Red color channel
   public var r: Value
 
@@ -38,7 +35,6 @@ public struct RGB<Value: BinaryFloatingPoint>: ComponentConvertible, RGBEncodabl
 
 /// HSB: Hue(man), Saturation, Brightness in RGB color space
 public struct HSB<Value: BinaryFloatingPoint>: ComponentConvertible {
-
   /// Hue(man)
   public var h: Value
 
@@ -59,7 +55,6 @@ public struct HSB<Value: BinaryFloatingPoint>: ComponentConvertible {
 
 /// Luminance, Blue-stimulation, Cone-response [CIE 1931] (XYZ)
 public struct XYZ<Value: BinaryFloatingPoint>: ComponentConvertible {
-
   public var x: Value
 
   public var y: Value
@@ -77,7 +72,6 @@ public struct XYZ<Value: BinaryFloatingPoint>: ComponentConvertible {
 
 /// L*, u*, v* [CIE 1976] (LUV)
 public struct LUV<Value: BinaryFloatingPoint>: ComponentConvertible {
-
   public var l: Value
 
   public var u: Value
@@ -95,7 +89,6 @@ public struct LUV<Value: BinaryFloatingPoint>: ComponentConvertible {
 
 /// Lightness, Chroma, Hue (LCH)
 public struct LCH<Value: BinaryFloatingPoint>: ComponentConvertible {
-
   /// Lightness channel
   public var l: Value
 
@@ -115,7 +108,6 @@ public struct LCH<Value: BinaryFloatingPoint>: ComponentConvertible {
 }
 
 public protocol HSLEncodable: ComponentConvertible {
-
   var h: Value { get }
 
   var s: Value { get }
@@ -124,13 +116,11 @@ public protocol HSLEncodable: ComponentConvertible {
 }
 
 extension HSLEncodable {
-
   public var components: (Value, Value, Value) { (h, s, l) }
 }
 
 /// HSLuv: Hue(man), Saturation, Lightness (HSLuv)
 public struct HSLuv<Value: BinaryFloatingPoint>: HSLEncodable {
-
   /// Hue(man)
   public var h: Value
 
@@ -149,7 +139,6 @@ public struct HSLuv<Value: BinaryFloatingPoint>: HSLEncodable {
 
 /// HPLuv: Hue(pastel), Saturation, Lightness (HPLuv)
 public struct HPLuv<Value: BinaryFloatingPoint>: HSLEncodable {
-
   /// Hue(pastel)
   public var h: Value
 

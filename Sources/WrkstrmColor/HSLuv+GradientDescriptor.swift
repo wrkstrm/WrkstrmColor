@@ -1,5 +1,4 @@
 extension HSLuv: Scalable {
-
   public var values: (Value, Value, Value) { (h, s, l) }
 
   public static func scaled(newComponents: (Value, Value, Value)) -> HSLuv {
@@ -8,12 +7,10 @@ extension HSLuv: Scalable {
 }
 
 extension HSLuv: RGBEncodable {
-
   public func rgbComponents() -> (Value, Value, Value) { hsluvToRgb(self).components }
 }
 
 extension HSLuv {
-
   public static var redGradient: GradientDescriptor<HSLuv<Value>> {
     GradientDescriptor(
       count: 10,
@@ -58,7 +55,6 @@ extension HSLuv {
 }
 
 extension HSLuv {
-
   public static func black() -> HSLuv<Value> {
     HSLuv<Value>(h: 0, s: 0, l: 0)
   }

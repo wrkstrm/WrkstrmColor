@@ -3,7 +3,6 @@ import Foundation
 // MARK: - XYZ/RGB Conversion
 
 extension XYZ {
-
   func fromLinear<Value: ComponentValue>(_ c: Value) -> Value {
     if c <= 0.003_130_8 {
       return 12.92 * c
@@ -22,7 +21,6 @@ extension XYZ {
 }
 
 extension RGB {
-
   func toLinear(_ component: Value) -> Value {
     let c_055 = 0.055  // swiftlint:disable:this identifier_name
     if component > 0.040_45 {
@@ -48,7 +46,6 @@ extension RGB {
 // simplified accordingly.
 
 extension XYZ {
-
   func yToL<Value: ComponentValue>(_ y: Value) -> Value {
     if y <= Constant.epsilon() {
       return y * Constant.kappa()
@@ -75,7 +72,6 @@ extension XYZ {
 }
 
 extension LUV {
-
   func lToY<Value: ComponentValue>(_ l: Value) -> Value {
     if l <= 8 {
       return l / Constant.kappa()
@@ -106,7 +102,6 @@ extension LUV {
 // MARK: - LUV / LCH Conversion
 
 extension LUV {
-
   public var toLch: LCH<Value> {
     let c = Value(sqrt(pow(Double(u), 2) + pow(Double(v), 2)))
 
@@ -126,7 +121,6 @@ extension LUV {
 }
 
 extension LCH {
-
   public var toLUV: LUV<Value> {
     let hRad = h / 360 * 2 * .pi
     let u = Value(cos(Double(hRad))) * c
@@ -153,7 +147,6 @@ func maxChroma<Value: ComponentValue>(lightness: Value, hue: Value) -> Value {
 }
 
 extension HSLuv {
-
   public var toLch: LCH<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate chroma
@@ -168,7 +161,6 @@ extension HSLuv {
 }
 
 extension LCH {
-
   public var toHSLuv: HSLuv<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate saturation
@@ -202,7 +194,6 @@ func maxChroma<Value: ComponentValue>(lightness: Value) -> Value {
 }
 
 extension HPLuv {
-
   public var toLCH: LCH<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate chroma
@@ -217,7 +208,6 @@ extension HPLuv {
 }
 
 extension LCH {
-
   public var toHPLuv: HPLuv<Value> {
     guard l <= 99.999_999_9, l >= 0.000_000_01 else {
       // White and black: disambiguate saturation
@@ -234,7 +224,6 @@ extension LCH {
 // MARK: - RGB / Hex Conversion
 
 extension RGB {
-
   public func round(_ value: Double, places: Double) -> Double {
     let divisor = pow(10.0, places)
     return Foundation.round(value * divisor) / divisor
@@ -267,7 +256,6 @@ extension RGB {
 }
 
 extension Hex {
-
   // This function is based on a comment by mehawk on gist arshad/de147c42d7b3063ef7bc.
   public func toRgb<Value: ComponentValue>() -> RGB<Value> {
     let string = string.replacingOccurrences(of: "#", with: "")

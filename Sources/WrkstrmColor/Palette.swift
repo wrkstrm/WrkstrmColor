@@ -1,7 +1,5 @@
 public enum Palette {
-
   public enum Gradient: Int {
-
     case red = 0
 
     case green
@@ -16,7 +14,6 @@ public enum Palette {
   }
 
   public enum Wrkstrm: Int {
-
     case physical = 0
 
     case work

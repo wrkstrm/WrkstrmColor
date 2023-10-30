@@ -1,13 +1,11 @@
 import Foundation
 
 public struct Delta<Value: ComponentValue> {
-
   public static func `static`(_ component: Value) -> Delta<Value> {
     Delta(static: component)
   }
 
   enum `Type` {
-
     case `static`
 
     case increasing
@@ -41,14 +39,12 @@ public struct Delta<Value: ComponentValue> {
 }
 
 public protocol Scalable {
-
   associatedtype Value: ComponentValue
 
   static func scaled(newComponents: Components<Value>) -> Self
 }
 
 public protocol Gradient {
-
   associatedtype S: Scalable  // swiftlint:disable:this type_name
 
   var aRange: Delta<S.Value> { get }
@@ -59,7 +55,6 @@ public protocol Gradient {
 }
 
 extension Gradient {
-
   func ratioCalculator(
     delta: Delta<S.Value>,
     ratio: S.Value
@@ -127,7 +122,6 @@ extension Gradient {
 }
 
 public struct GradientDescriptor<S: Scalable>: Gradient {
-
   public var aRange: Delta<S.Value>
 
   public var bRange: Delta<S.Value>
@@ -150,7 +144,6 @@ public struct GradientDescriptor<S: Scalable>: Gradient {
 }
 
 public struct ContrastGradientDescriptor<S: Scalable & RGBEncodable>: Gradient {
-
   public var aRange: Delta<S.Value>
 
   public var bRange: Delta<S.Value>

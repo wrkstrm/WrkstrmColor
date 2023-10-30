@@ -1,5 +1,4 @@
 extension Palette {
-
   public static func hsluvGradient<V: BinaryFloatingPoint>(
     for gradient: Gradient,
     index: Int,

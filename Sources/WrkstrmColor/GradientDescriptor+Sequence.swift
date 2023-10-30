@@ -1,12 +1,10 @@
 extension ClosedRange where ClosedRange.Bound: BinaryInteger {
-
   var magnitude: ClosedRange.Bound { upperBound - lowerBound }
 
   var midPoint: ClosedRange.Bound { lowerBound + magnitude / 2 }
 }
 
 extension GradientDescriptor: Sequence {
-
   public __consuming func makeIterator() -> AnyIterator<S> {
     var index = 0
     return AnyIterator<S> {
@@ -20,7 +18,6 @@ extension GradientDescriptor: Sequence {
 }
 
 extension ContrastGradientDescriptor: Sequence {
-
   public __consuming func makeIterator() -> AnyIterator<S> {
     var currentColor: S?
     let maxColors = Int.max

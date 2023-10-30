@@ -33,7 +33,6 @@ public protocol ComponentConvertible {
 // MARK: - Color Constants
 
 enum Constant {
-
   // Components<Double>
   static func m<Value: ComponentValue>() -> MType<Value> {
     (

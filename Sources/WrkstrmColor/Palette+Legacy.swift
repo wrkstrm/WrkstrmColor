@@ -2,7 +2,6 @@ import CoreGraphics
 import Foundation
 
 extension Palette {
-
   // swiftlint:disable:next function_body_length
   public static func rgb(
     for gradient: Gradient,
@@ -99,7 +98,6 @@ import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Palette {
-
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
   static func hsluv(
     for gradient: Gradient,
@@ -148,7 +146,6 @@ extension Palette {
 import UIKit
 
 extension Palette {
-
   public static func hsluv(
     for gradient: Gradient,
     index: Int,
@@ -194,7 +191,6 @@ extension Palette {
 import Cocoa
 
 extension Palette {
-
   static func hsluv(
     for gradient: Gradient,
     index: Int,

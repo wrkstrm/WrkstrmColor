@@ -8,7 +8,6 @@ typealias SnapshotDictionary = [String: [String: [Double]]]
 
 // swiftlint:disable:next convenience_type
 class Snapshot {
-
   static var hexSamples: [String] = {
     let samples = "0123456789abcdef"
 
@@ -76,7 +75,6 @@ class Snapshot {
       _ currentChannel: Double
     ) -> Void
   ) {
-
     for (hex, stableSamples) in stable {
       guard let currentSamples = current[hex] else {
         fatalError("Current sample is missing at \(hex)")

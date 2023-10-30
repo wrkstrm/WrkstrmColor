@@ -1,7 +1,6 @@
 import Foundation
 
 extension RGBEncodable {
-
   /// Relative luminance of a color according to W3's WCAG 2.0:
   /// https://www.w3.org/TR/WCAG20/#relativeluminancedef
   var luminance: Value {
@@ -39,7 +38,6 @@ extension RGBEncodable {
 import UIKit
 
 extension UIColor: Scalable {
-
   public static func scaled(newComponents: (CGFloat, CGFloat, CGFloat)) -> Self {
     Self(red: newComponents.0, green: newComponents.1, blue: newComponents.2, alpha: 1.0)
   }
@@ -48,7 +46,6 @@ extension UIColor: Scalable {
 }
 
 extension UIColor: RGBEncodable {
-
   public var components: (CGFloat, CGFloat, CGFloat) {
     let rgb = rgbaComponents().rgb
     return (CGFloat(rgb.r), CGFloat(rgb.g), CGFloat(rgb.b))
@@ -58,7 +55,6 @@ extension UIColor: RGBEncodable {
 }
 
 extension UIColor {
-
   static let redGradient = GradientDescriptor<UIColor>(
     count: 10,
     aRange: Delta(start: 1, end: 0),
@@ -67,7 +63,6 @@ extension UIColor {
 }
 
 extension UIFont {
-
   private var weight: CGFloat {
     guard
       let traits = fontDescriptor.object(forKey: .traits) as? [UIFontDescriptor.AttributeName: Any],
@@ -80,7 +75,6 @@ extension UIFont {
 }
 
 extension RGBEncodable {
-
   /// Determines whether the contrast between this `UIColor` and the provided
   /// `UIColor` is sufficient to meet the recommendations of W3's WCAG 2.0.
   ///
