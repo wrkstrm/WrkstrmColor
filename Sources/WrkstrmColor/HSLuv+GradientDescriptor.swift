@@ -12,9 +12,9 @@ extension HSLuv: RGBEncodable {
   public func rgbComponents() -> (Value, Value, Value) { hsluvToRgb(self).components }
 }
 
-public extension HSLuv {
+extension HSLuv {
 
-  static var redGradient: GradientDescriptor<HSLuv<Value>> {
+  public static var redGradient: GradientDescriptor<HSLuv<Value>> {
     GradientDescriptor(
       count: 10,
       aRange: .static(12.2),
@@ -22,7 +22,7 @@ public extension HSLuv {
       cRange: Delta(start: 30, end: 60))
   }
 
-  static func blueGradient(minContrast: Value = 1.1) -> ContrastGradientDescriptor<
+  public static func blueGradient(minContrast: Value = 1.1) -> ContrastGradientDescriptor<
     HSLuv<Value>
   > {
     ContrastGradientDescriptor(
@@ -32,7 +32,7 @@ public extension HSLuv {
       cRange: Delta(start: 30, end: 60))
   }
 
-  static var greenGradient: GradientDescriptor<HSLuv<Value>> {
+  public static var greenGradient: GradientDescriptor<HSLuv<Value>> {
     GradientDescriptor(
       count: 10,
       aRange: .static(127.7),
@@ -40,7 +40,7 @@ public extension HSLuv {
       cRange: Delta(start: 50, end: 70))
   }
 
-  static var blackGradient: GradientDescriptor<HSLuv<Value>> {
+  public static var blackGradient: GradientDescriptor<HSLuv<Value>> {
     GradientDescriptor(
       count: 10,
       aRange: .static(0),
@@ -48,7 +48,7 @@ public extension HSLuv {
       cRange: Delta(start: 0, end: 40))
   }
 
-  static var whiteGradient: GradientDescriptor<HSLuv<Value>> {
+  public static var whiteGradient: GradientDescriptor<HSLuv<Value>> {
     GradientDescriptor(
       count: 10,
       aRange: .static(0),
@@ -57,9 +57,9 @@ public extension HSLuv {
   }
 }
 
-public extension HSLuv {
+extension HSLuv {
 
-  static func black() -> HSLuv<Value> {
+  public static func black() -> HSLuv<Value> {
     HSLuv<Value>(h: 0, s: 0, l: 0)
   }
 }

@@ -123,9 +123,9 @@ public protocol HSLEncodable: ComponentConvertible {
   var l: Value { get }
 }
 
-public extension HSLEncodable {
+extension HSLEncodable {
 
-  var components: (Value, Value, Value) { (h, s, l) }
+  public var components: (Value, Value, Value) { (h, s, l) }
 }
 
 /// HSLuv: Hue(man), Saturation, Lightness (HSLuv)

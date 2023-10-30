@@ -58,7 +58,7 @@ public protocol Gradient {
   var cRange: Delta<S.Value> { get }
 }
 
-public extension Gradient {
+extension Gradient {
 
   func ratioCalculator(
     delta: Delta<S.Value>,
@@ -76,7 +76,7 @@ public extension Gradient {
     }
   }
 
-  func color(for index: S.Value, count: S.Value) -> S {
+  public func color(for index: S.Value, count: S.Value) -> S {
     let ratio = index / count
 
     let aNewComponent = ratioCalculator(delta: aRange, ratio: ratio)
@@ -89,7 +89,7 @@ public extension Gradient {
     return S.scaled(newComponents: newComponents)
   }
 
-  func first() -> S {
+  public func first() -> S {
     let a = aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound
 
     let b = bRange.type == .decreasing ? bRange.range.upperBound : bRange.range.lowerBound
@@ -99,7 +99,7 @@ public extension Gradient {
     return S.scaled(newComponents: (a, b, c))
   }
 
-  func mid() -> S {
+  public func mid() -> S {
     let a =
       (aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound)
         + aRange.magnitude / 2
@@ -115,7 +115,7 @@ public extension Gradient {
     return S.scaled(newComponents: (a, b, c))
   }
 
-  func last() -> S {
+  public func last() -> S {
     let a = aRange.type == .decreasing ? aRange.range.lowerBound : aRange.range.upperBound
 
     let b = bRange.type == .decreasing ? bRange.range.lowerBound : bRange.range.upperBound

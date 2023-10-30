@@ -4,7 +4,7 @@ import Foundation
 extension Palette {
 
   // swiftlint:disable:next function_body_length
-  static func rgb(
+  public static func rgb(
     for gradient: Gradient,
     index: Int,
     count: Int, reversed: Bool = false) -> RGB<Double>
@@ -93,7 +93,7 @@ extension Palette {
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-public extension Palette {
+extension Palette {
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
   static func hsluv(
@@ -142,9 +142,9 @@ public extension Palette {
 #if canImport(UIKit)
 import UIKit
 
-public extension Palette {
+extension Palette {
 
-  static func hsluv(
+  public static func hsluv(
     for gradient: Gradient,
     index: Int,
     count: Int,
@@ -155,7 +155,7 @@ public extension Palette {
     return UIColor(hsluv: color, alpha: 1)
   }
 
-  static func color(
+  public static func color(
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
@@ -168,7 +168,7 @@ public extension Palette {
       reversed: reversed)
   }
 
-  static func color(
+  public static func color(
     for gradient: Gradient,
     index: Int,
     count: Int,
@@ -188,7 +188,7 @@ public extension Palette {
 #if os(OSX)
 import Cocoa
 
-public extension Palette {
+extension Palette {
 
   static func hsluv(
     for gradient: Gradient,
