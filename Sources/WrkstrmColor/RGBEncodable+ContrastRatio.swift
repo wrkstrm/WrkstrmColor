@@ -13,7 +13,7 @@ extension RGBEncodable {
     let (red, green, blue) = components
     let luminance =
       0.212_6 * invGamSRGB(inverseColor: red) + 0.715_2 * invGamSRGB(inverseColor: green) + 0.072_2
-        * invGamSRGB(inverseColor: blue)
+      * invGamSRGB(inverseColor: blue)
     return min(1, max(0, luminance))
   }
 
@@ -89,8 +89,8 @@ extension RGBEncodable {
   /// 3.0:1 for larger text.
   func sufficientContrast(
     to other: some RGBEncodable,
-    with font: UIFont = UIFont.preferredFont(forTextStyle: .body)) -> Bool
-  {
+    with font: UIFont = UIFont.preferredFont(forTextStyle: .body)
+  ) -> Bool {
     let pointSizeThreshold: Value = font.isBold ? 14.0 : 18.0
     let contrastRatioThreshold: Value =
       Value(font.fontDescriptor.pointSize) < pointSizeThreshold ? 4.5 : 3.0

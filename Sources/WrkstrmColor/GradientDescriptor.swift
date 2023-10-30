@@ -62,17 +62,17 @@ extension Gradient {
 
   func ratioCalculator(
     delta: Delta<S.Value>,
-    ratio: S.Value) -> S.Value
-  {
+    ratio: S.Value
+  ) -> S.Value {
     switch delta.type {
-    case .static:
-      delta.range.lowerBound
+      case .static:
+        delta.range.lowerBound
 
-    case .increasing:
-      delta.range.lowerBound + delta.magnitude * ratio
+      case .increasing:
+        delta.range.lowerBound + delta.magnitude * ratio
 
-    case .decreasing:
-      delta.range.upperBound - delta.magnitude * ratio
+      case .decreasing:
+        delta.range.upperBound - delta.magnitude * ratio
     }
   }
 
@@ -102,15 +102,15 @@ extension Gradient {
   public func mid() -> S {
     let a =
       (aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound)
-        + aRange.magnitude / 2
+      + aRange.magnitude / 2
 
     let b =
       (bRange.type == .decreasing ? bRange.range.upperBound : bRange.range.lowerBound)
-        + bRange.magnitude / 2
+      + bRange.magnitude / 2
 
     let c =
       (cRange.type == .decreasing ? cRange.range.upperBound : cRange.range.lowerBound)
-        + cRange.magnitude / 2
+      + cRange.magnitude / 2
 
     return S.scaled(newComponents: (a, b, c))
   }
@@ -140,8 +140,8 @@ public struct GradientDescriptor<S: Scalable>: Gradient {
     count: Int,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>)
-  {
+    cRange: Delta<S.Value>
+  ) {
     self.count = count
     self.aRange = aRange
     self.bRange = bRange
@@ -163,8 +163,8 @@ public struct ContrastGradientDescriptor<S: Scalable & RGBEncodable>: Gradient {
     minContrast: S.Value,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>)
-  {
+    cRange: Delta<S.Value>
+  ) {
     self.minContrast = minContrast
     self.aRange = aRange
     self.bRange = bRange
