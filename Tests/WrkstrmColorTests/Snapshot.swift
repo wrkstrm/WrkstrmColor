@@ -24,11 +24,11 @@ class Snapshot {
   }()
 
   static var stable: SnapshotDictionary = {
-    let testBundle = Bundle(for: Snapshot.self)
+    let testBundle: Bundle = .init(for: Snapshot.self)
     guard
       let resourceBundlePath = testBundle.paths(forResourcesOfType: "bundle", inDirectory: nil)
         .first(where: { $0.contains("Resources") }),
-      let resourceBunble = Bundle(path: resourceBundlePath),
+      let resourceBunble: Bundle = .init(path: resourceBundlePath),
       let jsonURL = resourceBunble.url(forResource: "snapshot-rev4", withExtension: "json"),
       let jsonData = try? Data(contentsOf: jsonURL, options: .mappedIfSafe),
       let jsonResult = try? JSONSerialization.jsonObject(
@@ -41,10 +41,10 @@ class Snapshot {
   }()
 
   static var current: SnapshotDictionary = {
-    var current = SnapshotDictionary()
+    var current: SnapshotDictionary = .init()
 
     for sample in Snapshot.hexSamples {
-      let hex = Hex(sample)
+      let hex: Hex = .init(sample)
 
       let rgb: RGB<Double> = hex.toRgb()
       let xyz = rgb.toXyz

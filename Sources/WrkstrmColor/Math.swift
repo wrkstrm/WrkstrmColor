@@ -82,7 +82,7 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 
   var result: [Vector<Value>] = []
 
-  let mirror = Mirror(reflecting: Constant.m() as MType<Value>)
+  let mirror: Mirror = .init(reflecting: Constant.m() as MType<Value>)
   for (_, value) in mirror.children {
     // swiftlint:disable:next identifier_name force_cast
     let (m1, m2, m3) = value as! Components<Value>  // swiftlint:disable:this identifier_name

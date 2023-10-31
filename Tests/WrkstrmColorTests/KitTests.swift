@@ -13,7 +13,7 @@ class UIKitTests: XCTestCase {
     for h in stride(from: 0, through: 360, by: 5) {
       for s in stride(from: 0, through: 100, by: 5) {
         for l in stride(from: 0, through: 100, by: 5) {
-          let color = UIColor(
+          let color: UIColor = .init(
             hsluv: .init(
               h: CGFloat(h),
               s: CGFloat(s),
@@ -49,7 +49,7 @@ class AppKitTests: XCTestCase {
     for h in stride(from: CGFloat(0.0), through: 360, by: 5) {
       for s in stride(from: CGFloat(0.0), through: 100, by: 5) {
         for l in stride(from: CGFloat(0.0), through: 100, by: 5) {
-          let color = NSColor(hue: h, saturation: s, lightness: l, alpha: 1.0)
+          let color: NSColor = .init(hue: h, saturation: s, lightness: l, alpha: 1.0)
 
           XCTAssertNotNil(color)
 

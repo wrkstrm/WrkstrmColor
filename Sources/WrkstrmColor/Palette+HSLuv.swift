@@ -5,8 +5,8 @@ extension Palette {
     count: Int,
     reversed: Bool = false
   ) -> HSLuv<V> {
-    var dIndex = V(index)
-    let dCount = V(count)
+    var dIndex: V = .init(index)
+    let dCount: V = .init(count)
 
     if reversed {
       dIndex = dCount - dIndex

@@ -28,8 +28,8 @@ extension RGBEncodable {
   func contrastRatio(to other: some RGBEncodable) -> Value {
     let ourLuminance = luminance
     let theirLuminance = other.luminance
-    let lighterColor = Value(min(Double(ourLuminance), Double(theirLuminance)))
-    let darkerColor = Value(max(Double(ourLuminance), Double(theirLuminance)))
+    let lighterColor: Value = .init(min(Double(ourLuminance), Double(theirLuminance)))
+    let darkerColor: Value = .init(max(Double(ourLuminance), Double(theirLuminance)))
     return 1 / ((lighterColor + 0.05) / (darkerColor + 0.05))
   }
 }
