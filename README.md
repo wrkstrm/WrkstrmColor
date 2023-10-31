@@ -14,10 +14,10 @@ This framework adds a single initializer on the OS-specific color class to creat
 
 ```swift
 // macOS
-let color = NSColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
+let color: NSColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 
 // iOS
-let color = UIColor(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
+let color: UIColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
 ```
 
 ## TODO

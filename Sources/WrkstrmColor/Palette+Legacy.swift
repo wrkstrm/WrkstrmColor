@@ -8,8 +8,8 @@ extension Palette {
     index: Int,
     count: Int, reversed: Bool = false
   ) -> RGB<Double> {
-    var newIndex = Double(index)
-    var newCount = Double(count)
+    var newIndex: Double = .init(index)
+    var newCount: Double = .init(count)
 
     if reversed {
       newIndex = newCount - newIndex

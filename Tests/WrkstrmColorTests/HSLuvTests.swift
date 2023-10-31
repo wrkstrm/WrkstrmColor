@@ -52,7 +52,7 @@ class HSLuvTests: XCTestCase {
     for h in stride(from: 0.0, through: 360, by: 5) {
       for s in stride(from: 0.0, through: 100, by: 5) {
         for l in stride(from: 0.0, through: 100, by: 5) {
-          let tRgb = hsluvToRgb(HSLuv(h: h, s: s, l: l))
+          let tRgb: hsluvToRgb = .init(HSLuv(h: h, s: s, l: l))
           let rgb = [tRgb.r, tRgb.g, tRgb.b]
 
           for channel in rgb {
@@ -74,7 +74,7 @@ class HSLuvTests: XCTestCase {
     let assert =
       Snapshot.compare(Snapshot.current) {
         [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
-        let diff = abs(currentChannel - stableChannel)
+        let diff: abs = .init(currentChannel - stableChannel)
 
         XCTAssertLessThan(
           diff,
