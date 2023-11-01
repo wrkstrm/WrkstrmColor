@@ -6,6 +6,8 @@ let package = Package(
   platforms: [
     .iOS(.v16),
     .macOS(.v13),
+    .tvOS(.v16),
+    .watchOS(.v9),
   ],
   products: [
     .library(name: "WrkstrmColor", targets: ["WrkstrmColor"]),
