@@ -27,7 +27,7 @@ class Snapshot {
     let testBundle: Bundle = .init(for: Snapshot.self)
     guard
       let resourceBundlePath = testBundle.paths(forResourcesOfType: "bundle", inDirectory: nil)
-        .first(where: { $0.contains("Resources") }),
+      .first(where: { $0.contains("Resources") }),
       let resourceBunble: Bundle = .init(path: resourceBundlePath),
       let jsonURL = resourceBunble.url(forResource: "snapshot-rev4", withExtension: "json"),
       let jsonData = try? Data(contentsOf: jsonURL, options: .mappedIfSafe),
@@ -72,9 +72,8 @@ class Snapshot {
       _ stableTuple: [Double],
       _ currentTuple: [Double],
       _ stableChannel: Double,
-      _ currentChannel: Double
-    ) -> Void
-  ) {
+      _ currentChannel: Double) -> Void)
+  {
     for (hex, stableSamples) in stable {
       guard let currentSamples = current[hex] else {
         fatalError("Current sample is missing at \(hex)")
@@ -91,7 +90,7 @@ class Snapshot {
 
         for i in [0...2] {
           guard let stableChannel = stableTuple[i].first,
-            let currentChannel = currentTuple[i].first
+                let currentChannel = currentTuple[i].first
           else {
             fatalError("Current channel is missing at \(hex):\(tag):\(i)")
           }
