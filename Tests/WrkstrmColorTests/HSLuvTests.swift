@@ -80,7 +80,7 @@ class HSLuvTests: XCTestCase {
     let assert =
       Snapshot.compare(Snapshot.current) {
         [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
-        let diff: abs = .init(currentChannel - stableChannel)
+        let diff = abs(currentChannel - stableChannel)
 
         XCTAssertLessThan(
           diff,
