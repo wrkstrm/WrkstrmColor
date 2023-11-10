@@ -6,6 +6,12 @@ import XCTest
 // TODO: Add HPLuv tests
 
 class HSLuvTests: XCTestCase {
+  static var allTests = [
+    ("testConversionConsistency", testConversionConsistency),
+    ("testRgbRangeTolerance", testRgbRangeTolerance),
+    ("testSnapshot", testSnapshot),
+  ]
+  
   let rgbRangeTolerance = 0.000_000_001
   let snapshotTolerance = 0.000_000_001
 
