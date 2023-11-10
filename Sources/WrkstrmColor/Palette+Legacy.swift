@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import CoreGraphics
 import Foundation
 
@@ -87,6 +88,7 @@ extension Palette {
     return RGB(r: red, g: green, b: blue)
   }
 }
+#endif  // canImport(UIKit)
 
 #if canImport(SwiftUI)
 import SwiftUI
