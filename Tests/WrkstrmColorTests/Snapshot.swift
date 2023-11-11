@@ -3,6 +3,19 @@ import XCTest
 @testable import WrkstrmColor
 
 // TODO: Add HPLuv support
+enum JSONResource {
+  public static func load(fileName: String) -> Data? {
+    let currentFileURL = URL(fileURLWithPath: #file)
+    let currentDirectoryURL = currentFileURL.deletingLastPathComponent()
+    
+    let fileURL = currentDirectoryURL
+        .appendingPathComponent("Resources", isDirectory: true)
+        .appendingPathComponent(fileName)
+        .appendingPathExtension("json")
+
+    return try? Data(contentsOf: fileURL)
+  }
+}
 
 typealias SnapshotDictionary = [String: [String: [Double]]]
 
@@ -24,13 +37,8 @@ class Snapshot {
   }()
 
   static var stable: SnapshotDictionary = {
-    let testBundle: Bundle = .init(for: Snapshot.self)
     guard
-      let resourceBundlePath = testBundle.paths(forResourcesOfType: "bundle", inDirectory: nil)
-      .first(where: { $0.contains("Resources") }),
-      let resourceBunble: Bundle = .init(path: resourceBundlePath),
-      let jsonURL = resourceBunble.url(forResource: "snapshot-rev4", withExtension: "json"),
-      let jsonData = try? Data(contentsOf: jsonURL, options: .mappedIfSafe),
+      let jsonData = JSONResource.load(fileName: "snapshot-rev4"),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
         options: .fragmentsAllowed) as? SnapshotDictionary
