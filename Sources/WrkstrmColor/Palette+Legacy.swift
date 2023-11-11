@@ -1,5 +1,6 @@
 #if canImport(CoreGraphics)
 import CoreGraphics
+#endif  // canImport(CoreGraphics)
 import Foundation
 
 extension Palette {
@@ -88,7 +89,6 @@ extension Palette {
     return RGB(r: red, g: green, b: blue)
   }
 }
-#endif  // canImport(CoreGraphics)
 
 #if canImport(SwiftUI)
 import SwiftUI
@@ -128,7 +128,7 @@ extension Palette {
     count: Int,
     reversed: Bool = false) -> Color
   {
-    let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
+    let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
     return Color(
       red: color.r / 255.0,
       green: color.g / 255.0,
@@ -136,7 +136,6 @@ extension Palette {
       opacity: 1.0)
   }
 }
-
 #endif  // canImport(SwiftUI)
 
 #if canImport(UIKit)
@@ -181,7 +180,6 @@ extension Palette {
       alpha: 1.0)
   }
 }
-
 #endif
 
 #if os(OSX)
@@ -218,7 +216,7 @@ extension Palette {
     count: Int,
     reversed: Bool = false) -> NSColor
   {
-    let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
+    let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
     return NSColor(
       red: CGFloat(color.r / 255.0),
       green: CGFloat(color.g / 255.0),
