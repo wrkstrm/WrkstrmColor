@@ -33,7 +33,7 @@ class Snapshot {
       let jsonData = try? Data(contentsOf: jsonURL, options: .mappedIfSafe),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
-        options: .topLevelDictionaryAssumed) as? SnapshotDictionary
+        options: .fragmentsAllowed) as? SnapshotDictionary
     else {
       fatalError("Snapshot JSON file is missing")
     }
