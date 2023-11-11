@@ -1,15 +1,13 @@
-// swift-version:5.7
-
 // Extends `ClosedRange` for types conforming to `BinaryInteger`.
 extension ClosedRange where ClosedRange.Bound: BinaryInteger {
   // Computes the magnitude (size) of the range.
-  var magnitude: ClosedRange.Bound {
+  public var magnitude: ClosedRange.Bound {
     // Subtracting the lower bound from the upper bound to find the range size.
     upperBound - lowerBound
   }
 
   // Calculates the mid-point of the range.
-  var midPoint: ClosedRange.Bound {
+  public var midPoint: ClosedRange.Bound {
     // Adding half of the magnitude to the lower bound to find the middle value.
     lowerBound + magnitude / 2
   }
