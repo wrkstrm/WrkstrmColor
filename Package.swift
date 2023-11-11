@@ -1,6 +1,13 @@
 // swift-tools-version:5.9
 import PackageDescription
 
+extension SwiftSetting {
+  static let profile: SwiftSetting = .unsafeFlags([
+    "-Xfrontend",
+    "-warn-long-expression-type-checking=25",
+  ])
+}
+
 let package = Package(
   name: "WrkstrmColor",
   platforms: [
@@ -19,5 +26,8 @@ let package = Package(
       dependencies: ["WrkstrmColor"],
       resources: [
         .process("Resources")
+      ],
+      swiftSettings: [
+        .profile
       ]),
   ])
