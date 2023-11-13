@@ -20,14 +20,10 @@ let package = Package(
     .library(name: "WrkstrmColor", targets: ["WrkstrmColor"]),
   ],
   targets: [
-    .target(name: "WrkstrmColor", dependencies: []),
+    .target(name: "WrkstrmColor", swiftSettings: [.profile]),
     .testTarget(
       name: "WrkstrmColorTests",
       dependencies: ["WrkstrmColor"],
-      resources: [
-        .process("Resources")
-      ],
-      swiftSettings: [
-        .profile
-      ]),
+      resources: [.process("Resources")],
+      swiftSettings: [.profile]),
   ])
