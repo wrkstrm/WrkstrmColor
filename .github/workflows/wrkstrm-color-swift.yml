@@ -1,13 +1,13 @@
 name: "\U0001F3CE️ Swift Build| WrkstrmColor"
 on:
-  pull_request:
-    branches:
-    - main
   push:
     branches:
     - main
     paths:
     - '**'
+  pull_request:
+    branches:
+    - main
 jobs:
   swift-build:
     strategy:
@@ -22,7 +22,7 @@ jobs:
         submodules: recursive
     - name: Cache Swift PM dependencies
       id: cache-spm
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         key: ${{ runner.os }}-spm-WrkstrmColor-${{ hashFiles('**/Package.resolved')
           }}
