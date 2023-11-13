@@ -1,6 +1,6 @@
 # WrkstrmColor
 
-[![wrkstrm-color](https://github.com/wrkstrm/laussat/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/laussat/actions/workflows/wrkstrm-color-build.yml)
+[![wrkstrm-color](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml)
 
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
@@ -23,7 +23,6 @@ let color: UIColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alph
 ## TODO
 
 * Finish HPLuv implementation
-* Improve tests and add continuous integration testing
 * Add usage documentation
 
 ## License
