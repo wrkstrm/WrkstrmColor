@@ -1,13 +1,13 @@
 name: "\U0001F6A7 Swift Test| WrkstrmColorTests"
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
     paths:
     - '**'
-  pull_request:
-    branches:
-    - main
 jobs:
   swift-test:
     strategy:
@@ -24,10 +24,10 @@ jobs:
       id: cache-spm
       uses: actions/cache@v3
       with:
-        restore-keys: ${{ runner.os }}-spm-WrkstrmColor-
-        path: apple/WrkstrmColor/.build
         key: ${{ runner.os }}-spm-WrkstrmColor-${{ hashFiles('**/Package.resolved')
           }}
+        path: apple/WrkstrmColor/.build
+        restore-keys: ${{ runner.os }}-spm-WrkstrmColor-
     - name: Check Cache
       run: 'echo ''Cache hit: ${{ steps.cache-spm.outputs.cache-hit }}'''
     - name: Setup Xcode
@@ -38,6 +38,8 @@ jobs:
     - name: Swift Describe
       if: steps.cache-spm.outputs.cache-hit != 'true'
       run: swift package describe --type json
+    - name: Set CI Style
+      run: echo "SPM_CI_USE_LOCAL_DEPS=false" >> $GITHUB_ENV
     - name: Check CI Style
       run: '[ -z "${SPM_CI_USE_LOCAL_DEPS}" ] && echo "SPM_CI_LOCAL_DEPS is not set"
         || echo "SPM_CI_USE_LOCAL_DEPS is set to ${SPM_CI_USE_LOCAL_DEPS}"'
