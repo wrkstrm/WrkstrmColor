@@ -20,7 +20,8 @@ public struct Delta<Value: ComponentValue> {
   /// The type of delta.
   let type: Type
 
-  /// Initializes a delta with a start and end value, determining its type based on their relationship.
+  /// Initializes a delta with a start and end value, determining its type based on their
+  /// relationship.
   public init(start: Value, end: Value) {
     if start == end {
       type = .static
@@ -67,11 +68,11 @@ extension Gradient {
   func ratioCalculator(delta: Delta<S.Value>, ratio: S.Value) -> S.Value {
     switch delta.type {
       case .static:
-        return delta.range.lowerBound
+        delta.range.lowerBound
       case .increasing:
-        return delta.range.lowerBound + delta.magnitude * ratio
+        delta.range.lowerBound + delta.magnitude * ratio
       case .decreasing:
-        return delta.range.upperBound - delta.magnitude * ratio
+        delta.range.upperBound - delta.magnitude * ratio
     }
   }
 
@@ -100,9 +101,15 @@ extension Gradient {
   /// Returns the middle color in the gradient.
   public func mid() -> S {
     // Calculate the middle values based on the delta types and magnitudes.
-    let a = (aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound) + aRange.magnitude / 2
-    let b = (bRange.type == .decreasing ? bRange.range.upperBound : bRange.range.lowerBound) + bRange.magnitude / 2
-    let c = (cRange.type == .decreasing ? cRange.range.upperBound : cRange.range.lowerBound) + cRange.magnitude / 2
+    let a =
+      (aRange.type == .decreasing ? aRange.range.upperBound : aRange.range.lowerBound) + aRange
+        .magnitude / 2
+    let b =
+      (bRange.type == .decreasing ? bRange.range.upperBound : bRange.range.lowerBound) + bRange
+        .magnitude / 2
+    let c =
+      (cRange.type == .decreasing ? cRange.range.upperBound : cRange.range.lowerBound) + cRange
+        .magnitude / 2
 
     return S.scaled(newComponents: (a, b, c))
   }
@@ -116,6 +123,7 @@ extension Gradient {
     return S.scaled(newComponents: (a, b, c))
   }
 }
+
 public struct GradientDescriptor<S: Scalable>: Gradient {
   public var aRange: Delta<S.Value>
   public var bRange: Delta<S.Value>
@@ -133,6 +141,7 @@ public struct GradientDescriptor<S: Scalable>: Gradient {
     self.cRange = cRange
   }
 }
+
 public struct ContrastGradientDescriptor<S: Scalable & RGBEncodable>: Gradient {
   public var aRange: Delta<S.Value>
   public var bRange: Delta<S.Value>

@@ -17,14 +17,14 @@ extension ClosedRange where ClosedRange.Bound: BinaryInteger {
 extension GradientDescriptor: Sequence {
   /// Creates an iterator for the gradient descriptor.
   public __consuming func makeIterator() -> AnyIterator<S> {
-    var index = 0 // Starting index for iteration.
+    var index = 0  // Starting index for iteration.
 
     return AnyIterator<S> {
-      defer { index += 1 } // Ensures the index is incremented after returning a color.
+      defer { index += 1 }  // Ensures the index is incremented after returning a color.
 
       // Checks if the iteration has reached past the end of the gradient descriptor.
       guard index <= self.count else {
-        return nil // Ends the iteration when all elements are iterated over.
+        return nil  // Ends the iteration when all elements are iterated over.
       }
 
       // Returns a color at the current index, computed from the gradient descriptor.
@@ -37,9 +37,9 @@ extension GradientDescriptor: Sequence {
 extension ContrastGradientDescriptor: Sequence {
   /// Creates an iterator for the contrast gradient descriptor.
   public __consuming func makeIterator() -> AnyIterator<S> {
-    var currentColor: S? // Holds the current color in the iteration.
-    let maxColors = Int.max // Defines the maximum number of colors.
-    var colorRange = (0...maxColors) // Defines the range for color selection.
+    var currentColor: S?  // Holds the current color in the iteration.
+    let maxColors = Int.max  // Defines the maximum number of colors.
+    var colorRange = (0...maxColors)  // Defines the range for color selection.
 
     return AnyIterator<S> {
       // Initializes the first color if not already set.

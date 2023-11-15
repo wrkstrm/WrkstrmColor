@@ -1,7 +1,9 @@
+import Foundation
+
+// canImport(CoreGraphics)
 #if canImport(CoreGraphics)
 import CoreGraphics
-#endif  // canImport(CoreGraphics)
-import Foundation
+#endif
 
 extension Palette {
   // swiftlint:disable:next function_body_length

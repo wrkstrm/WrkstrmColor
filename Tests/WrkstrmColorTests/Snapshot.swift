@@ -7,8 +7,9 @@ enum JSONResource {
   public static func load(fileName: String) -> Data? {
     let currentFileURL = URL(fileURLWithPath: #file)
     let currentDirectoryURL = currentFileURL.deletingLastPathComponent()
-    
-    let fileURL = currentDirectoryURL
+
+    let fileURL =
+      currentDirectoryURL
         .appendingPathComponent("Resources", isDirectory: true)
         .appendingPathComponent(fileName)
         .appendingPathExtension("json")
@@ -20,7 +21,7 @@ enum JSONResource {
 typealias SnapshotDictionary = [String: [String: [Double]]]
 
 // swiftlint:disable:next convenience_type
-class Snapshot {
+enum Snapshot {
   static var hexSamples: [String] = {
     let samples = "0123456789abcdef"
 
