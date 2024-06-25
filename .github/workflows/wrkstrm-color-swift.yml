@@ -1,19 +1,19 @@
 name: "\U0001F3CE️ Swift Build| WrkstrmColor"
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
     paths:
     - '**'
-  pull_request:
-    branches:
-    - main
 jobs:
   swift-build:
     strategy:
       matrix:
         os:
-        - macos-13
+        - macos-14
         - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,19 +22,19 @@ jobs:
         submodules: recursive
     - name: Cache SPM dependencies
       id: cache-spm
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         restore-keys: ${{ runner.os }}-spm-WrkstrmColor-
+        path: apple/WrkstrmColor/.build
         key: ${{ runner.os }}-spm-WrkstrmColor-${{ hashFiles('**/Package.resolved')
           }}
-        path: apple/WrkstrmColor/.build
     - name: Check Cache
       run: 'echo ''Cache hit: ${{ steps.cache-spm.outputs.cache-hit }}'''
     - name: Setup Xcode
       uses: maxim-lobanov/setup-xcode@v1
-      if: matrix.os == 'macos-latest' || matrix.os == 'macos-13' || matrix.os == 'self-hosted'
+      if: matrix.os == 'macos-latest' || matrix.os == 'macos-14' || matrix.os == 'self-hosted'
       with:
-        xcode-version: '15.0'
+        xcode-version: '15.3'
     - name: Swift Describe
       if: steps.cache-spm.outputs.cache-hit != 'true'
       run: swift package describe --type json
