@@ -10,8 +10,8 @@ extension Palette {
   public static func rgb(
     for gradient: Gradient,
     index: Int,
-    count: Int, reversed: Bool = false) -> RGB<Double>
-  {
+    count: Int, reversed: Bool = false
+  ) -> RGB<Double> {
     var newIndex: Double = .init(index)
     var newCount: Double = .init(count)
 
@@ -31,7 +31,8 @@ extension Palette {
         ending = (
           red: sR + cutoff * 10,
           green: sG + cutoff * 10,
-          blue: sB + cutoff * 10)
+          blue: sB + cutoff * 10
+        )
 
       case .blue:
         starting = (red: 45, green: 100, blue: 215)
@@ -40,7 +41,8 @@ extension Palette {
         ending = (
           red: sR + cutoff * 12,
           green: sG + cutoff * 12,
-          blue: sB + cutoff * 10)
+          blue: sB + cutoff * 10
+        )
 
       case .red:
         starting = (red: 215, green: 25, blue: 25)
@@ -49,7 +51,8 @@ extension Palette {
         ending = (
           red: sR + cutoff * 10,
           green: sG + cutoff * 20,
-          blue: sB + cutoff * 10)
+          blue: sB + cutoff * 10
+        )
 
       case .black:
         starting = (red: 65, green: 65, blue: 65)
@@ -58,7 +61,8 @@ extension Palette {
         ending = (
           red: sR + cutoff * 8,
           green: sG + cutoff * 8,
-          blue: sB + cutoff * 8)
+          blue: sB + cutoff * 8
+        )
 
       default:
         starting = (red: 200, green: 200, blue: 200)
@@ -67,7 +71,8 @@ extension Palette {
         ending = (
           red: sR + cutoff * 6,
           green: sG + cutoff * 6,
-          blue: sB + cutoff * 6)
+          blue: sB + cutoff * 6
+        )
     }
 
     var delta = 1.0 / cutoff
@@ -102,8 +107,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color
-  {
+    reversed: Bool = false
+  ) -> Color {
     let color: HSLuv<CGFloat> =
       hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
     return Color(hsluv: color, opacity: 1)
@@ -114,8 +119,8 @@ extension Palette {
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color
-  {
+    reversed: Bool = false
+  ) -> Color {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -128,8 +133,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> Color
-  {
+    reversed: Bool = false
+  ) -> Color {
     let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
     return Color(
       red: color.r / 255.0,
@@ -148,8 +153,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor
-  {
+    reversed: Bool = false
+  ) -> UIColor {
     let color: HSLuv<CGFloat> =
       hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
     return UIColor(hsluv: color, alpha: 1)
@@ -159,8 +164,8 @@ extension Palette {
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor
-  {
+    reversed: Bool = false
+  ) -> UIColor {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -172,8 +177,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> UIColor
-  {
+    reversed: Bool = false
+  ) -> UIColor {
     let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
     return UIColor(
       red: CGFloat(color.r / 255.0),
@@ -192,8 +197,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor
-  {
+    reversed: Bool = false
+  ) -> NSColor {
     let color: HSLuv<CGFloat> = hsluvGradient(
       for: gradient, index: index, count: count, reversed: reversed)
     return NSColor(hsluv: color, alpha: 1)
@@ -203,8 +208,8 @@ extension Palette {
     for wrkstrm: Wrkstrm,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor
-  {
+    reversed: Bool = false
+  ) -> NSColor {
     color(
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
@@ -216,8 +221,8 @@ extension Palette {
     for gradient: Gradient,
     index: Int,
     count: Int,
-    reversed: Bool = false) -> NSColor
-  {
+    reversed: Bool = false
+  ) -> NSColor {
     let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
     return NSColor(
       red: CGFloat(color.r / 255.0),

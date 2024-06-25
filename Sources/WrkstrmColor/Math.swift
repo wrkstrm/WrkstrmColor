@@ -4,13 +4,15 @@ typealias MType<Value: BinaryFloatingPoint> =
   (
     R: Components<Value>,
     G: Components<Value>,
-    B: Components<Value>)
+    B: Components<Value>
+  )
 
 typealias MInvType<Value: BinaryFloatingPoint> =
   (
     X: Components<Value>,
     Y: Components<Value>,
-    Z: Components<Value>)
+    Z: Components<Value>
+  )
 
 /// Generic Vector type.
 typealias Vector<Value: BinaryFloatingPoint> = (Value, Value)
@@ -36,7 +38,8 @@ enum Constant {
     (
       R: Components(3.240_969_941_904_521_4, -1.537_383_177_570_093_5, -0.498_610_760_293_003_28),
       G: Components(-0.969_243_636_280_879_83, 1.875_967_501_507_720_7, 0.041_555_057_407_175_613),
-      B: Components(0.055_630_079_696_993_609, -0.203_976_958_888_976_57, 1.056_971_514_242_878_6))
+      B: Components(0.055_630_079_696_993_609, -0.203_976_958_888_976_57, 1.056_971_514_242_878_6)
+    )
   }
 
   // Components<Double>
@@ -44,7 +47,8 @@ enum Constant {
     (
       X: Components(0.412_390_799_265_959_48, 0.357_584_339_383_877_96, 0.180_480_788_401_834_29),
       Y: Components(0.212_639_005_871_510_36, 0.715_168_678_767_755_93, 0.072_192_315_360_733_715),
-      Z: Components(0.019_330_818_715_591_851, 0.119_194_779_794_625_99, 0.950_532_152_249_660_58))
+      Z: Components(0.019_330_818_715_591_851, 0.119_194_779_794_625_99, 0.950_532_152_249_660_58)
+    )
   }
 
   // Hard-coded D65 standard illuminant
@@ -84,7 +88,7 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
     let (m1, m2, m3) = value as! Components<Value>  // swiftlint:disable:this identifier_name
     // swiftlint:disable:previous identifier_name
     let targets: [Value] = [0.0, 1.0]
-    targets.forEach { target in
+    for target in targets {
       let top1: Value = (284_517 * m1 - 94_839 * m3) * sub2
       let multiple: Value = (838_422 * m3 + 769_860 * m2 + 731_718 * m1)
       let top2: Value = multiple * lightness * sub2 - 769_860 * target * lightness
@@ -98,8 +102,8 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
 
 func intersectLine<Value: ComponentValue>(
   _ line1: Vector<Value>,
-  _ line2: Vector<Value>) -> Value
-{
+  _ line2: Vector<Value>
+) -> Value {
   (line1.1 - line2.1) / (line2.0 - line1.0)
 }
 

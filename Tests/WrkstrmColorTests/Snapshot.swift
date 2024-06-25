@@ -10,9 +10,9 @@ enum JSONResource {
 
     let fileURL =
       currentDirectoryURL
-        .appendingPathComponent("Resources", isDirectory: true)
-        .appendingPathComponent(fileName)
-        .appendingPathExtension("json")
+      .appendingPathComponent("Resources", isDirectory: true)
+      .appendingPathComponent(fileName)
+      .appendingPathExtension("json")
 
     return try? Data(contentsOf: fileURL)
   }
@@ -26,9 +26,9 @@ enum Snapshot {
     let samples = "0123456789abcdef"
 
     var hexSamples = [String]()
-    samples.forEach { r in
-      samples.forEach { g in
-        samples.forEach { b in
+    for r in samples {
+      for g in samples {
+        for b in samples {
           hexSamples.append("#\(r)\(r)\(g)\(g)\(b)\(b)")
         }
       }
@@ -81,8 +81,9 @@ enum Snapshot {
       _ stableTuple: [Double],
       _ currentTuple: [Double],
       _ stableChannel: Double,
-      _ currentChannel: Double) -> Void)
-  {
+      _ currentChannel: Double
+    ) -> Void
+  ) {
     for (hex, stableSamples) in stable {
       guard let currentSamples = current[hex] else {
         fatalError("Current sample is missing at \(hex)")
@@ -99,7 +100,7 @@ enum Snapshot {
 
         for i in [0...2] {
           guard let stableChannel = stableTuple[i].first,
-                let currentChannel = currentTuple[i].first
+            let currentChannel = currentTuple[i].first
           else {
             fatalError("Current channel is missing at \(hex):\(tag):\(i)")
           }
