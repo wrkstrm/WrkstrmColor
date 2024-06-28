@@ -20,7 +20,6 @@ enum JSONResource {
 
 typealias SnapshotDictionary = [String: [String: [Double]]]
 
-// swiftlint:disable:next convenience_type
 enum Snapshot {
   static var hexSamples: [String] = {
     let samples = "0123456789abcdef"
