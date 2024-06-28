@@ -4,7 +4,7 @@ import XCTest
 
 // TODO: Add HPLuv support
 enum JSONResource {
-  public static func load(fileName: String) -> Data? {
+  static func load(fileName: String) -> Data? {
     let currentFileURL = URL(fileURLWithPath: #file)
     let currentDirectoryURL = currentFileURL.deletingLastPathComponent()
 
