@@ -77,18 +77,17 @@ class HSLuvTests: XCTestCase {
   }
 
   func testSnapshot() {
-    let assert =
-      Snapshot.compare(Snapshot.current) {
-        [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
-        let diff = abs(currentChannel - stableChannel)
+    Snapshot.compare(Snapshot.current) {
+      [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
+      let diff = abs(currentChannel - stableChannel)
 
-        XCTAssertLessThan(
-          diff,
-          snapshotTolerance,
-          """
-          Snapshots for \(hex) don't match at \(tag):
-          (stable: \(stableTuple), current: \(currentTuple)
-          """)
-      }
+      XCTAssertLessThan(
+        diff,
+        snapshotTolerance,
+        """
+        Snapshots for \(hex) don't match at \(tag):
+        (stable: \(stableTuple), current: \(currentTuple)
+        """)
+    }
   }
 }

@@ -1,23 +1,10 @@
+import WrkstrmFoundation
+import WrkstrmMain
 import XCTest
 
 @testable import WrkstrmColor
 
 // TODO: Add HPLuv support
-enum JSONResource {
-  static func load(fileName: String) -> Data? {
-    let currentFileURL = URL(fileURLWithPath: #file)
-    let currentDirectoryURL = currentFileURL.deletingLastPathComponent()
-
-    let fileURL =
-      currentDirectoryURL
-      .appendingPathComponent("Resources", isDirectory: true)
-      .appendingPathComponent(fileName)
-      .appendingPathExtension("json")
-
-    return try? Data(contentsOf: fileURL)
-  }
-}
-
 typealias SnapshotDictionary = [String: [String: [Double]]]
 
 enum Snapshot {
@@ -38,7 +25,7 @@ enum Snapshot {
 
   static var stable: SnapshotDictionary = {
     guard
-      let jsonData = JSONResource.load(fileName: "snapshot-rev4"),
+      let jsonData = JSON.Resource.load(fileName: "snapshot-rev4"),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
         options: .fragmentsAllowed) as? SnapshotDictionary
