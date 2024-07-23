@@ -22,14 +22,14 @@ extension SwiftSetting {
 // MARK: - PackageDescription extensions
 
 extension [PackageDescription.Package.Dependency] {
-  static let local: [PackageDescription.Package.Dependency]  =
+  static let local: [PackageDescription.Package.Dependency] =
     [
-      .package(name: "WrkstrmFoundation", path: "../WrkstrmFoundation"),
+      .package(name: "WrkstrmFoundation", path: "../WrkstrmFoundation")
     ]
 
   static let remote: [PackageDescription.Package.Dependency] =
     [
-      .package(url: "https://github.com/wrkstrm/WrkstrmFoundation.git", from: "0.4.0"),
+      .package(url: "https://github.com/wrkstrm/WrkstrmFoundation.git", from: "0.4.0")
     ]
 }
 
@@ -41,7 +41,8 @@ struct ConfigurationService {
 
   private static let local: ConfigurationService = .init(
     swiftSettings: [.localSwiftSettings],
-    dependencies: .local)
+    dependencies: .local
+  )
 
   private static let remote: ConfigurationService = .init(swiftSettings: [], dependencies: .remote)
 
@@ -57,7 +58,7 @@ let package = Package(
     .watchOS(.v9),
   ],
   products: [
-    .library(name: "WrkstrmColor", targets: ["WrkstrmColor"]),
+    .library(name: "WrkstrmColor", targets: ["WrkstrmColor"])
   ],
   dependencies: ConfigurationService.shared.dependencies,
   targets: [
@@ -66,5 +67,7 @@ let package = Package(
       name: "WrkstrmColorTests",
       dependencies: ["WrkstrmColor", "WrkstrmFoundation"],
       resources: [.process("Resources")],
-      swiftSettings: ConfigurationService.shared.swiftSettings),
-  ])
+      swiftSettings: ConfigurationService.shared.swiftSettings
+    ),
+  ]
+)

@@ -65,7 +65,7 @@ public protocol Gradient {
 /// Extension of the Gradient protocol to include utility functions.
 extension Gradient {
   /// Calculates the value in the delta range based on the given ratio.
-  func ratioCalculator(delta: Delta<S.Value>, ratio: S.Value) -> S.Value {
+  internal func ratioCalculator(delta: Delta<S.Value>, ratio: S.Value) -> S.Value {
     switch delta.type {
       case .static:
         delta.range.lowerBound

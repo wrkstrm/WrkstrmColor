@@ -46,7 +46,8 @@ extension ContrastGradientDescriptor: Sequence {
       guard let current = currentColor else {
         currentColor = self.color(
           for: S.Value(colorRange.lowerBound),
-          count: S.Value(maxColors))
+          count: S.Value(maxColors)
+        )
         return currentColor
       }
 
@@ -58,7 +59,8 @@ extension ContrastGradientDescriptor: Sequence {
         let contrast = current.contrastRatio(
           to: self.color(
             for: S.Value(colorRange.midPoint),
-            count: S.Value(maxColors)))
+            count: S.Value(maxColors)
+          ))
 
         // Narrows down the range based on the contrast ratio.
         if contrast < self.minContrast {

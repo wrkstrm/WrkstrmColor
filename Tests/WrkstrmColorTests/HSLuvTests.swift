@@ -65,11 +65,13 @@ class HSLuvTests: XCTestCase {
             XCTAssertGreaterThan(
               channel,
               -rgbRangeTolerance,
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
             XCTAssertLessThanOrEqual(
               channel,
               1 + rgbRangeTolerance,
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
           }
         }
       }
@@ -87,7 +89,8 @@ class HSLuvTests: XCTestCase {
         """
         Snapshots for \(hex) don't match at \(tag):
         (stable: \(stableTuple), current: \(currentTuple)
-        """)
+        """
+      )
     }
   }
 }

@@ -125,7 +125,8 @@ extension Palette {
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
       count: count,
-      reversed: reversed)
+      reversed: reversed
+    )
   }
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -140,7 +141,8 @@ extension Palette {
       red: color.r / 255.0,
       green: color.g / 255.0,
       blue: color.b / 255.0,
-      opacity: 1.0)
+      opacity: 1.0
+    )
   }
 }
 #endif  // canImport(SwiftUI)
@@ -170,7 +172,8 @@ extension Palette {
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
       count: count,
-      reversed: reversed)
+      reversed: reversed
+    )
   }
 
   public static func color(
@@ -184,7 +187,8 @@ extension Palette {
       red: CGFloat(color.r / 255.0),
       green: CGFloat(color.g / 255.0),
       blue: CGFloat(color.b / 255.0),
-      alpha: 1.0)
+      alpha: 1.0
+    )
   }
 }
 #endif
@@ -200,7 +204,8 @@ extension Palette {
     reversed: Bool = false
   ) -> NSColor {
     let color: HSLuv<CGFloat> = hsluvGradient(
-      for: gradient, index: index, count: count, reversed: reversed)
+      for: gradient, index: index, count: count, reversed: reversed
+    )
     return NSColor(hsluv: color, alpha: 1)
   }
 
@@ -214,7 +219,8 @@ extension Palette {
       for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
       index: index,
       count: count,
-      reversed: reversed)
+      reversed: reversed
+    )
   }
 
   static func color(
@@ -228,7 +234,8 @@ extension Palette {
       red: CGFloat(color.r / 255.0),
       green: CGFloat(color.g / 255.0),
       blue: CGFloat(color.b / 255.0),
-      alpha: 1.0)
+      alpha: 1.0
+    )
   }
 }
 

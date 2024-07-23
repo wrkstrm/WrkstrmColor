@@ -28,7 +28,8 @@ enum Snapshot {
       let jsonData = JSON.Resource.load(fileName: "snapshot-rev4"),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
-        options: .fragmentsAllowed) as? SnapshotDictionary
+        options: .fragmentsAllowed
+      ) as? SnapshotDictionary
     else {
       fatalError("Snapshot JSON file is missing")
     }

@@ -89,7 +89,7 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
     // swiftlint:disable:previous identifier_name
     let targets: [Value] = [0.0, 1.0]
     for target in targets {
-      let top1: Value = (284_517 * m1 - 94_839 * m3) * sub2
+      let top1: Value = (284_517 * m1 - 94839 * m3) * sub2
       let multiple: Value = (838_422 * m3 + 769_860 * m2 + 731_718 * m1)
       let top2: Value = multiple * lightness * sub2 - 769_860 * target * lightness
       let bottom: Value = (632_260 * m3 - 126_452 * m2) * sub2 + 126_452 * target

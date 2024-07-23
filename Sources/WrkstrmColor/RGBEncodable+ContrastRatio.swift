@@ -59,7 +59,8 @@ extension UIColor {
     count: 10,
     aRange: Delta(start: 1, end: 0),
     bRange: Delta(start: 0, end: 0),
-    cRange: Delta(start: 0, end: 0))
+    cRange: Delta(start: 0, end: 0)
+  )
 }
 
 extension UIFont {

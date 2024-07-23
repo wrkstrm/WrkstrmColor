@@ -17,7 +17,9 @@ class UIKitTests: XCTestCase {
             hsluv: .init(
               h: CGFloat(h),
               s: CGFloat(s),
-              l: CGFloat(l)), alpha: 1.0)
+              l: CGFloat(l)
+            ), alpha: 1.0
+          )
 
           XCTAssertNotNil(color)
 
@@ -28,11 +30,13 @@ class UIKitTests: XCTestCase {
             XCTAssertGreaterThan(
               channel,
               -rgbRangeTolerance,
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
             XCTAssertLessThanOrEqual(
               channel,
               1 + rgbRangeTolerance,
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
           }
         }
       }
@@ -60,11 +64,13 @@ class AppKitTests: XCTestCase {
             XCTAssertGreaterThan(
               channel,
               CGFloat(-rgbRangeTolerance),
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
             XCTAssertLessThanOrEqual(
               channel,
               CGFloat(1 + rgbRangeTolerance),
-              "HSLuv: \([h, s, l]) -> RGB: \(rgb)")
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)"
+            )
           }
         }
       }

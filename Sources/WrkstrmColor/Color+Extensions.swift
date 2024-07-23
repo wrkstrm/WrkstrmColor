@@ -39,7 +39,8 @@ extension Color {
       red: Double(rgb.r),
       green: Double(rgb.g),
       blue: Double(rgb.b),
-      opacity: opacity)
+      opacity: opacity
+    )
   }
 }
 #endif
