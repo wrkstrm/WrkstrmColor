@@ -24,7 +24,7 @@ extension SwiftSetting {
 extension [PackageDescription.Package.Dependency] {
   static let local: [PackageDescription.Package.Dependency] =
     [
-      .package(name: "WrkstrmFoundation", path: "../WrkstrmFoundation")
+      .package(name: "WrkstrmFoundation", path: "../../universal/WrkstrmFoundation")
     ]
 
   static let remote: [PackageDescription.Package.Dependency] =
