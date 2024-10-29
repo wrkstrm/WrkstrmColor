@@ -4,7 +4,7 @@ import Foundation
 public struct Delta<Value: ComponentValue> {
   /// Creates a static delta with a constant component value.
   public static func `static`(_ component: Value) -> Delta<Value> {
-    Delta(static: component)
+    .init(static: component)
   }
 
   /// Defines the type of delta, whether it is static, increasing, or decreasing.

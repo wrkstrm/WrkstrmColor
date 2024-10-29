@@ -39,7 +39,7 @@ enum Snapshot {
   static var current: SnapshotDictionary = {
     var current: SnapshotDictionary = .init()
 
-    for sample in Snapshot.hexSamples {
+    for sample in Self.hexSamples {
       let hex: Hex = .init(sample)
 
       let rgb: RGB<Double> = hex.toRgb()
