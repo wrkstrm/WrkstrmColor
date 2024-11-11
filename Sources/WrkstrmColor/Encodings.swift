@@ -22,13 +22,13 @@ public struct RGB<Value: BinaryFloatingPoint>: ComponentConvertible, RGBEncodabl
   /// Blue color channel
   public var b: Value
 
+  public var components: Components<Value> { (r, g, b) }
+
   public init(r: Value, g: Value, b: Value) {
     self.r = r
     self.g = g
     self.b = b
   }
-
-  public var components: Components<Value> { (r, g, b) }
 
   public func rgbComponents() -> (Value, Value, Value) { components }
 }
@@ -44,13 +44,13 @@ public struct HSB<Value: BinaryFloatingPoint>: ComponentConvertible {
   /// Lightness
   public var b: Value
 
+  public var components: Components<Value> { (h, s, b) }
+
   public init(h: Value, s: Value, b: Value) {
     self.h = h
     self.s = s
     self.b = b
   }
-
-  public var components: Components<Value> { (h, s, b) }
 }
 
 /// Luminance, Blue-stimulation, Cone-response [CIE 1931] (XYZ)
@@ -61,13 +61,13 @@ public struct XYZ<Value: BinaryFloatingPoint>: ComponentConvertible {
 
   public var z: Value
 
+  public var components: Components<Value> { (x, y, z) }
+
   public init(x: Value, y: Value, z: Value) {
     self.x = x
     self.y = y
     self.z = z
   }
-
-  public var components: Components<Value> { (x, y, z) }
 }
 
 /// L*, u*, v* [CIE 1976] (LUV)
@@ -78,13 +78,13 @@ public struct LUV<Value: BinaryFloatingPoint>: ComponentConvertible {
 
   public var v: Value
 
+  public var components: Components<Value> { (l, u, v) }
+
   public init(l: Value, u: Value, v: Value) {
     self.l = l
     self.u = u
     self.v = v
   }
-
-  public var components: Components<Value> { (l, u, v) }
 }
 
 /// Lightness, Chroma, Hue (LCH)
@@ -98,13 +98,13 @@ public struct LCH<Value: BinaryFloatingPoint>: ComponentConvertible {
   /// Hue channel
   public var h: Value
 
+  public var components: Components<Value> { (l, c, h) }
+
   public init(l: Value, c: Value, h: Value) {
     self.l = l
     self.c = c
     self.h = h
   }
-
-  public var components: Components<Value> { (l, c, h) }
 }
 
 public protocol HSLEncodable: ComponentConvertible {

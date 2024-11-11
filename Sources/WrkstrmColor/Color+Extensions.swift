@@ -12,7 +12,7 @@ extension Color {
   /// - parameter opacity: Double
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
   public init(hue: Double, saturation: Double, lightness: Double, opacity: Double) {
-    let rgb = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
+    let rgb: RGB = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, opacity: opacity)
   }
 
@@ -23,7 +23,7 @@ extension Color {
   /// - parameter opacity: Double
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
   public init(hsluv: HSLuv<some BinaryFloatingPoint>, opacity: Double) {
-    let rgb = hsluvToRgb(hsluv)
+    let rgb: RGB = hsluvToRgb(hsluv)
     self.init(red: Double(rgb.r), green: Double(rgb.g), blue: Double(rgb.b), opacity: opacity)
   }
 
@@ -34,7 +34,7 @@ extension Color {
   /// - parameter opacity: Double
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
   public init(hpluv: HPLuv<some BinaryFloatingPoint>, opacity: Double) {
-    let rgb = hpluvToRgb(hpluv)
+    let rgb: RGB = hpluvToRgb(hpluv)
     self.init(
       red: Double(rgb.r),
       green: Double(rgb.g),
@@ -57,7 +57,7 @@ extension UIColor {
   /// - parameter lightness: CGFloat
   /// - parameter alpha: CGFloat
   public convenience init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat) {
-    let rgb = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
+    let rgb: RGB = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: alpha)
   }
 
@@ -67,7 +67,7 @@ extension UIColor {
   /// - parameter hsluv: HSLuv<CGFloat>
   /// - parameter alpha: CGFloat
   public convenience init(hsluv: HSLuv<some BinaryFloatingPoint>, alpha: CGFloat) {
-    let rgb = hsluvToRgb(hsluv)
+    let rgb: RGB = hsluvToRgb(hsluv)
     self.init(red: CGFloat(rgb.r), green: CGFloat(rgb.g), blue: CGFloat(rgb.b), alpha: alpha)
   }
 
@@ -77,7 +77,7 @@ extension UIColor {
   /// - parameter hpluv: HPLuv<CGFloat>
   /// - parameter alpha: CGFloat
   public convenience init(hpluv: HPLuv<CGFloat>, alpha: CGFloat) {
-    let rgb = hpluvToRgb(hpluv)
+    let rgb: RGB = hpluvToRgb(hpluv)
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: alpha)
   }
 
@@ -121,7 +121,7 @@ extension NSColor {
   /// - parameter lightness: CGFloat
   /// - parameter alpha: CGFloat
   public convenience init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat) {
-    let rgb = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
+    let rgb: RGB = hsluvToRgb(HSLuv(h: hue, s: saturation, l: lightness))
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: alpha)
   }
 
@@ -131,7 +131,7 @@ extension NSColor {
   /// - parameter hsluv: HSLuv
   /// - parameter alpha: Double
   public convenience init(hsluv: HSLuv<CGFloat>, alpha: CGFloat) {
-    let rgb = hsluvToRgb(hsluv)
+    let rgb: RGB = hsluvToRgb(hsluv)
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: alpha)
   }
 
@@ -141,7 +141,7 @@ extension NSColor {
   /// - parameter hpluv: HPLuv
   /// - parameter alpha: Double
   public convenience init(hpluv: HPLuv<CGFloat>, alpha: CGFloat) {
-    let rgb = hpluvToRgb(hpluv)
+    let rgb: RGB = hpluvToRgb(hpluv)
     self.init(red: rgb.r, green: rgb.g, blue: rgb.b, alpha: alpha)
   }
 

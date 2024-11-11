@@ -16,6 +16,7 @@ extension RGBEncodable {
     return min(1, max(0, luminance))
   }
 
+  @inline(__always)
   func invGamSRGB(inverseColor: Value) -> Value {
     guard inverseColor <= 0.039_28 else {
       return Value(pow(Double((inverseColor + 0.055) / 1.055), 2.4))
