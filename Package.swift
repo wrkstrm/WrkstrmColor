@@ -2,52 +2,15 @@
 import Foundation
 import PackageDescription
 
-// MARK: - Foundation extensions
-
-extension ProcessInfo {
-  static var useLocalDeps: Bool {
-    ProcessInfo.processInfo.environment["SPM_USE_LOCAL_DEPS"] == "true"
-  }
-}
-
 // MARK: - PackageDescription extensions
 
-extension SwiftSetting {
-  static let localSwiftSettings: SwiftSetting = .unsafeFlags([
-    "-Xfrontend",
-    "-warn-long-expression-type-checking=10",
-  ])
-}
+Package.Inject.local.dependencies = [
+  .package(name: "WrkstrmFoundation", path: "../../universal/WrkstrmFoundation")
+]
 
-// MARK: - PackageDescription extensions
-
-extension [PackageDescription.Package.Dependency] {
-  static let local: [PackageDescription.Package.Dependency] =
-    [
-      .package(name: "WrkstrmFoundation", path: "../../universal/WrkstrmFoundation")
-    ]
-
-  static let remote: [PackageDescription.Package.Dependency] =
-    [
-      .package(url: "https://github.com/wrkstrm/WrkstrmFoundation.git", from: "0.4.0")
-    ]
-}
-
-// MARK: - Configuration Service
-
-struct ConfigurationService {
-  let swiftSettings: [SwiftSetting]
-  let dependencies: [PackageDescription.Package.Dependency]
-
-  private static let local: ConfigurationService = .init(
-    swiftSettings: [.localSwiftSettings],
-    dependencies: .local
-  )
-
-  private static let remote: ConfigurationService = .init(swiftSettings: [], dependencies: .remote)
-
-  static let shared: ConfigurationService = ProcessInfo.useLocalDeps ? .local : .remote
-}
+Package.Inject.remote.dependencies = [
+  .package(url: "https://github.com/wrkstrm/WrkstrmFoundation.git", from: "0.4.0")
+]
 
 let package = Package(
   name: "WrkstrmColor",
@@ -60,14 +23,50 @@ let package = Package(
   products: [
     .library(name: "WrkstrmColor", targets: ["WrkstrmColor"])
   ],
-  dependencies: ConfigurationService.shared.dependencies,
+  dependencies: Package.Inject.shared.dependencies,
   targets: [
-    .target(name: "WrkstrmColor", swiftSettings: ConfigurationService.shared.swiftSettings),
+    .target(name: "WrkstrmColor", swiftSettings: Package.Inject.shared.swiftSettings),
     .testTarget(
       name: "WrkstrmColorTests",
       dependencies: ["WrkstrmColor", "WrkstrmFoundation"],
       resources: [.process("Resources")],
-      swiftSettings: ConfigurationService.shared.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings
     ),
   ]
 )
+
+// MARK: - Package Service
+
+extension Package {
+  @MainActor
+  public struct Inject {
+    public static let version = "0.0.1"
+
+    public var swiftSettings: [SwiftSetting] = []
+    var dependencies: [PackageDescription.Package.Dependency] = []
+
+    public static let shared: Inject = ProcessInfo.useLocalDeps ? .local : .remote
+
+    static var local: Inject = .init(swiftSettings: [.localSwiftSettings])
+    static var remote: Inject = .init()
+  }
+}
+
+// MARK: - PackageDescription extensions
+
+extension SwiftSetting {
+  public static let localSwiftSettings: SwiftSetting = .unsafeFlags([
+    "-Xfrontend",
+    "-warn-long-expression-type-checking=10",
+  ])
+}
+
+// MARK: - Foundation extensions
+
+extension ProcessInfo {
+  public static var useLocalDeps: Bool {
+    ProcessInfo.processInfo.environment["SPM_USE_LOCAL_DEPS"] == "true"
+  }
+}
+
+// PACKAGE_SERVICE_END_V1
