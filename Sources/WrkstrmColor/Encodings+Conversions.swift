@@ -3,20 +3,20 @@ import Foundation
 // MARK: - XYZ/RGB Conversion
 
 extension XYZ {
-  func fromLinear<Value: ComponentValue>(_ c: Value) -> Value {
+  func fromLinear<T: ComponentValue>(_ c: T) -> T {
     if c <= 0.003_130_8 {
       return 12.92 * c
     }
-    return Value(1.055 * pow(Double(c), 1 / 2.4) - 0.055)
+    return T(1.055 * pow(Double(c), 1 / 2.4) - 0.055)
   }
 
   var toRGB: RGB<Value> {
     let components = components
-    let r = fromLinear(dotProduct(Constant.m().R, b: components))
-    let g = fromLinear(dotProduct(Constant.m().G, b: components))
-    let b = fromLinear(dotProduct(Constant.m().B, b: components))
+    let r = fromLinear(Value(dotProduct(Constant.m().R, b: components)))
+    let g = fromLinear(Value(dotProduct(Constant.m().G, b: components)))
+    let b = fromLinear(Value(dotProduct(Constant.m().B, b: components)))
 
-    return RGB(r: Value(r), g: Value(g), b: Value(b))
+    return RGB(r: r, g: g, b: b)
   }
 }
 
@@ -46,11 +46,11 @@ extension RGB {
 // simplified accordingly.
 
 extension XYZ {
-  func yToL<Value: ComponentValue>(_ y: Value) -> Value {
+  func yToL<T: ComponentValue>(_ y: T) -> T {
     if y <= Constant.epsilon() {
       return y * Constant.kappa()
     }
-    return Value(116 * pow(Double(y), 1 / 3) - 16)
+    return T(116 * pow(Double(y), 1 / 3) - 16)
   }
 
   var toLuv: LUV<Value> {
@@ -72,11 +72,11 @@ extension XYZ {
 }
 
 extension LUV {
-  func lToY<Value: ComponentValue>(_ l: Value) -> Value {
+  func lToY<T: ComponentValue>(_ l: T) -> T {
     if l <= 8 {
       return l / Constant.kappa()
     }
-    return Value(pow(Double((l + 16) / 116), 3))
+    return T(pow(Double((l + 16) / 116), 3))
   }
 
   var toXYZ: XYZ<Value> {

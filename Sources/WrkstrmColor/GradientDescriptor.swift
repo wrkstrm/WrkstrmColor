@@ -1,7 +1,7 @@
 import Foundation
 
 /// A struct to represent the delta (difference or range) for a generic value.
-public struct Delta<Value: ComponentValue> {
+public struct Delta<Value: ComponentValue>: Sendable {
   /// Creates a static delta with a constant component value.
   public static func `static`(_ component: Value) -> Delta<Value> {
     .init(static: component)
@@ -126,7 +126,7 @@ extension Gradient {
   }
 }
 
-public struct GradientDescriptor<S: Scalable>: Gradient {
+public struct GradientDescriptor<S: Scalable>: Gradient, Sendable {
   public var aRange: Delta<S.Value>
   public var bRange: Delta<S.Value>
   public var cRange: Delta<S.Value>

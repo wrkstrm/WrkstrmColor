@@ -7,6 +7,7 @@ import XCTest
 // TODO: Add HPLuv support
 typealias SnapshotDictionary = [String: [String: [Double]]]
 
+@MainActor
 enum Snapshot {
   static var hexSamples: [String] = {
     let samples = "0123456789abcdef"

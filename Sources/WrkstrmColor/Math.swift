@@ -20,11 +20,11 @@ typealias Vector<Value: BinaryFloatingPoint> = (Value, Value)
 // Using structs instead of tuples to prevent implicit conversion, which was making debugging
 // difficult.
 
-public typealias ComponentValue = BinaryFloatingPoint & ExpressibleByIntegerLiteral
+public typealias ComponentValue = BinaryFloatingPoint & ExpressibleByIntegerLiteral & Sendable
 
 public typealias Components<Value: ComponentValue> = (Value, Value, Value)
 
-public protocol ComponentConvertible {
+public protocol ComponentConvertible: Sendable {
   associatedtype Value: ComponentValue
 
   var components: Components<Value> { get }
