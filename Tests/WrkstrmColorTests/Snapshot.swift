@@ -29,7 +29,7 @@ enum Snapshot {
       let jsonData = JSON.Resource.load(fileName: "snapshot-rev4"),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
-        options: .fragmentsAllowed
+        options: .fragmentsAllowed,
       ) as? SnapshotDictionary
     else {
       fatalError("Snapshot JSON file is missing")
@@ -70,7 +70,7 @@ enum Snapshot {
       _ currentTuple: [Double],
       _ stableChannel: Double,
       _ currentChannel: Double
-    ) -> Void
+    ) -> Void,
   ) {
     for (hex, stableSamples) in stable {
       guard let currentSamples = current[hex] else {

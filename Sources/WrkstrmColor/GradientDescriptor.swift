@@ -67,14 +67,14 @@ extension Gradient {
   /// Calculates the value in the delta range based on the given ratio.
   internal func ratioCalculator(delta: Delta<S.Value>, ratio: S.Value) -> S.Value {
     switch delta.type {
-      case .static:
-        delta.range.lowerBound
+    case .static:
+      delta.range.lowerBound
 
-      case .increasing:
-        delta.range.lowerBound + delta.magnitude * ratio
+    case .increasing:
+      delta.range.lowerBound + delta.magnitude * ratio
 
-      case .decreasing:
-        delta.range.upperBound - delta.magnitude * ratio
+    case .decreasing:
+      delta.range.upperBound - delta.magnitude * ratio
     }
   }
 
@@ -135,7 +135,7 @@ public struct GradientDescriptor<S: Scalable>: Gradient, Sendable {
     count: Int,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>
+    cRange: Delta<S.Value>,
   ) {
     self.count = count
     self.aRange = aRange
@@ -153,7 +153,7 @@ public struct ContrastGradientDescriptor<S: Scalable & RGBEncodable>: Gradient {
     minContrast: S.Value,
     aRange: Delta<S.Value>,
     bRange: Delta<S.Value>,
-    cRange: Delta<S.Value>
+    cRange: Delta<S.Value>,
   ) {
     self.minContrast = minContrast
     self.aRange = aRange

@@ -16,7 +16,7 @@ extension HSLuv {
       count: 10,
       aRange: .static(12.2),
       bRange: Delta(start: 100.0, end: 50),
-      cRange: Delta(start: 30, end: 60)
+      cRange: Delta(start: 30, end: 60),
     )
   }
 
@@ -27,7 +27,7 @@ extension HSLuv {
       minContrast: minContrast,
       aRange: .static(258.6),
       bRange: Delta(start: 100, end: 50),
-      cRange: Delta(start: 30, end: 60)
+      cRange: Delta(start: 30, end: 60),
     )
   }
 
@@ -36,7 +36,7 @@ extension HSLuv {
       count: 10,
       aRange: .static(127.7),
       bRange: Delta(start: 100, end: 50),
-      cRange: Delta(start: 50, end: 70)
+      cRange: Delta(start: 50, end: 70),
     )
   }
 
@@ -45,7 +45,7 @@ extension HSLuv {
       count: 10,
       aRange: .static(0),
       bRange: .static(0),
-      cRange: Delta(start: 0, end: 40)
+      cRange: Delta(start: 0, end: 40),
     )
   }
 
@@ -54,7 +54,7 @@ extension HSLuv {
       count: 10,
       aRange: .static(0),
       bRange: .static(0),
-      cRange: Delta(start: 100, end: 60)
+      cRange: Delta(start: 100, end: 60),
     )
   }
 }

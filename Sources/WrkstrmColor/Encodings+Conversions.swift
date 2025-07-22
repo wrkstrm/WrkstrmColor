@@ -243,7 +243,7 @@ extension RGB {
     return String(Int(ch), radix: 16, uppercase: false).padding(
       toLength: 2,
       withPad: "0",
-      startingAt: 0
+      startingAt: 0,
     )
   }
 
@@ -268,7 +268,7 @@ extension Hex {
     return RGB(
       r: Value(Double((rgbValue & 0xFF0000) >> 16) / 255.0),
       g: Value(Double((rgbValue & 0x00FF00) >> 8) / 255.0),
-      b: Value(Double(rgbValue & 0x0000FF) / 255.0)
+      b: Value(Double(rgbValue & 0x0000FF) / 255.0),
     )
   }
 }

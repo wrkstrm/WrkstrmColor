@@ -30,9 +30,9 @@ let package = Package(
       name: "WrkstrmColorTests",
       dependencies: ["WrkstrmColor", "WrkstrmFoundation"],
       resources: [.process("Resources")],
-      swiftSettings: Package.Inject.shared.swiftSettings
+      swiftSettings: Package.Inject.shared.swiftSettings,
     ),
-  ]
+  ],
 )
 
 // MARK: - Package Service
