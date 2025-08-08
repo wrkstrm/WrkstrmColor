@@ -81,7 +81,9 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
   let sub2: Value = sub1 > Constant.epsilon() ? sub1 : lightness / Constant.kappa()
 
   var result: [Vector<Value>] = []
-  result.reserveCapacity(6)
+  // 3 matrix rows × 2 targets per row = 6 bounds
+  let boundsCount = 3 * 2
+  result.reserveCapacity(boundsCount)
 
   let m: MType<Value> = Constant.m()
   let rows: [Components<Value>] = [m.R, m.G, m.B]
