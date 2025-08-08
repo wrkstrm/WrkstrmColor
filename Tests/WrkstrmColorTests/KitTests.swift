@@ -1,14 +1,16 @@
 import Foundation
-import XCTest
+import Testing
 
 @testable import WrkstrmColor
 
 #if canImport(UIKit)
   import CoreGraphics
 
-  class UIKitTests: XCTestCase {
+  @Suite
+  struct UIKitTests {
     let rgbRangeTolerance: CGFloat = 0.000_000_000_01
 
+    @Test
     func testUIColorRGBRangeTolerance() {
       for h in stride(from: 0, through: 360, by: 5) {
         for s in stride(from: 0, through: 100, by: 5) {
@@ -21,20 +23,18 @@ import XCTest
               ), alpha: 1.0,
             )
 
-            XCTAssertNotNil(color)
+            #expect(color != nil)
 
             let tRgb = color.rgbaComponents().rgb
             let rgb = [tRgb.r, tRgb.g, tRgb.b]
 
             for channel in rgb {
-              XCTAssertGreaterThan(
-                channel,
-                -rgbRangeTolerance,
+              #expect(
+                channel > -rgbRangeTolerance,
                 "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
               )
-              XCTAssertLessThanOrEqual(
-                channel,
-                1 + rgbRangeTolerance,
+              #expect(
+                channel <= 1 + rgbRangeTolerance,
                 "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
               )
             }
@@ -46,29 +46,29 @@ import XCTest
 
 #elseif os(macOS)
 
-  class AppKitTests: XCTestCase {
+  @Suite
+  struct AppKitTests {
     let rgbRangeTolerance = 0.000_000_000_01
 
+    @Test
     func testNSColorRGBRangeTolerance() {
       for h in stride(from: CGFloat(0.0), through: 360, by: 5) {
         for s in stride(from: CGFloat(0.0), through: 100, by: 5) {
           for l in stride(from: CGFloat(0.0), through: 100, by: 5) {
             let color: NSColor = .init(hue: h, saturation: s, lightness: l, alpha: 1.0)
 
-            XCTAssertNotNil(color)
+            #expect(color != nil)
 
             let tRGBA = color.rgbaComponents()
             let rgb = [tRGBA.rgb.r, tRGBA.rgb.g, tRGBA.rgb.b]
 
             for channel in rgb {
-              XCTAssertGreaterThan(
-                channel,
-                CGFloat(-rgbRangeTolerance),
+              #expect(
+                channel > CGFloat(-rgbRangeTolerance),
                 "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
               )
-              XCTAssertLessThanOrEqual(
-                channel,
-                CGFloat(1 + rgbRangeTolerance),
+              #expect(
+                channel <= CGFloat(1 + rgbRangeTolerance),
                 "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
               )
             }

@@ -81,11 +81,15 @@ func getBounds<Value: ComponentValue>(lightness: Value) -> [Vector<Value>] {
   let sub2: Value = sub1 > Constant.epsilon() ? sub1 : lightness / Constant.kappa()
 
   var result: [Vector<Value>] = []
+  // 3 matrix rows × 2 targets per row = 6 bounds
+  let boundsCount = 3 * 2
+  result.reserveCapacity(boundsCount)
 
-  let mirror: Mirror = .init(reflecting: Constant.m() as MType<Value>)
-  for (_, value) in mirror.children {
-    // swiftlint:disable:next identifier_name force_cast
-    let (m1, m2, m3) = value as! Components<Value>  // swiftlint:disable:this identifier_name
+  let m: MType<Value> = Constant.m()
+  let rows: [Components<Value>] = [m.R, m.G, m.B]
+  for row in rows {
+    // swiftlint:disable:next identifier_name
+    let (m1, m2, m3) = row  // swiftlint:disable:this identifier_name
     // swiftlint:disable:previous identifier_name
     let targets: [Value] = [0.0, 1.0]
     for target in targets {
