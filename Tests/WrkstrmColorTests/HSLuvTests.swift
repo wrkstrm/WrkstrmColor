@@ -1,27 +1,18 @@
 import Foundation
-import XCTest
+import Testing
 
 @testable import WrkstrmColor
 
 // TODO: Add HPLuv tests
 
-class HSLuvTests: XCTestCase {
-  static var allTests = [
-    ("testConversionConsistency", testConversionConsistency),
-    ("testRgbRangeTolerance", testRgbRangeTolerance),
-    ("testSnapshot", testSnapshot),
-  ]
-
+@Suite
+struct HSLuvTests {
   let rgbRangeTolerance = 0.000_000_001
   let snapshotTolerance = 0.000_000_001
 
-  override func setUp() {
-    super.setUp()
-    continueAfterFailure = false
-  }
-
-  func testConversionConsistency() {
-    for hex in Snapshot.hexSamples {
+  @Test
+  func testConversionConsistency() async {
+    for hex in await Snapshot.hexSamples {
       let rgb: RGB<Double> = Hex(hex).toRgb()
       let xyz = rgb.toXyz
       let luv = xyz.toLuv
@@ -34,26 +25,27 @@ class HSLuvTests: XCTestCase {
       let toRgb: RGB<Double> = toXyz.toRGB
       let toHex = toRgb.toHex
 
-      XCTAssertEqual(lch.l, toLch.l, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(lch.c, toLch.c, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(lch.h, toLch.h, accuracy: rgbRangeTolerance)
+      #expect(abs(lch.l - toLch.l) <= rgbRangeTolerance)
+      #expect(abs(lch.c - toLch.c) <= rgbRangeTolerance)
+      #expect(abs(lch.h - toLch.h) <= rgbRangeTolerance)
 
-      XCTAssertEqual(luv.l, toLuv.l, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(luv.u, toLuv.u, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(luv.v, toLuv.v, accuracy: rgbRangeTolerance)
+      #expect(abs(luv.l - toLuv.l) <= rgbRangeTolerance)
+      #expect(abs(luv.u - toLuv.u) <= rgbRangeTolerance)
+      #expect(abs(luv.v - toLuv.v) <= rgbRangeTolerance)
 
-      XCTAssertEqual(xyz.x, toXyz.x, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(xyz.y, toXyz.y, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(xyz.z, toXyz.z, accuracy: rgbRangeTolerance)
+      #expect(abs(xyz.x - toXyz.x) <= rgbRangeTolerance)
+      #expect(abs(xyz.y - toXyz.y) <= rgbRangeTolerance)
+      #expect(abs(xyz.z - toXyz.z) <= rgbRangeTolerance)
 
-      XCTAssertEqual(rgb.r, toRgb.r, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(rgb.g, toRgb.g, accuracy: rgbRangeTolerance)
-      XCTAssertEqual(rgb.b, toRgb.b, accuracy: rgbRangeTolerance)
+      #expect(abs(rgb.r - toRgb.r) <= rgbRangeTolerance)
+      #expect(abs(rgb.g - toRgb.g) <= rgbRangeTolerance)
+      #expect(abs(rgb.b - toRgb.b) <= rgbRangeTolerance)
 
-      XCTAssertEqual(hex, toHex.string)
+      #expect(hex == toHex.string)
     }
   }
 
+  @Test
   func testRgbRangeTolerance() {
     for h in stride(from: 0.0, through: 360, by: 5) {
       for s in stride(from: 0.0, through: 100, by: 5) {
@@ -62,14 +54,12 @@ class HSLuvTests: XCTestCase {
           let rgb = [tRgb.r, tRgb.g, tRgb.b]
 
           for channel in rgb {
-            XCTAssertGreaterThan(
-              channel,
-              -rgbRangeTolerance,
+            #expect(
+              channel > -rgbRangeTolerance,
               "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
             )
-            XCTAssertLessThanOrEqual(
-              channel,
-              1 + rgbRangeTolerance,
+            #expect(
+              channel <= 1 + rgbRangeTolerance,
               "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
             )
           }
@@ -78,14 +68,14 @@ class HSLuvTests: XCTestCase {
     }
   }
 
-  func testSnapshot() {
-    Snapshot.compare(Snapshot.current) {
+  @Test
+  func testSnapshot() async {
+    await Snapshot.compare(await Snapshot.current) {
       [snapshotTolerance] hex, tag, stableTuple, currentTuple, stableChannel, currentChannel in
       let diff = abs(currentChannel - stableChannel)
 
-      XCTAssertLessThan(
-        diff,
-        snapshotTolerance,
+      #expect(
+        diff < snapshotTolerance,
         """
         Snapshots for \(hex) don't match at \(tag):
         (stable: \(stableTuple), current: \(currentTuple)

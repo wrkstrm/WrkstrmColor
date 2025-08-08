@@ -1,6 +1,6 @@
+import Foundation
 import WrkstrmFoundation
 import WrkstrmMain
-import XCTest
 
 @testable import WrkstrmColor
 
