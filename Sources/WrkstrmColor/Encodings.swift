@@ -41,7 +41,7 @@ public struct HSB<Value: BinaryFloatingPoint & Sendable>: ComponentConvertible {
   /// Saturation
   public var s: Value
 
-  /// Lightness
+  /// Brightness
   public var b: Value
 
   public var components: Components<Value> { (h, s, b) }
