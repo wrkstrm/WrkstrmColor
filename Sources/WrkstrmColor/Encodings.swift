@@ -33,9 +33,9 @@ public struct RGB<Value: BinaryFloatingPoint & Sendable>: ComponentConvertible, 
   public func rgbComponents() -> (Value, Value, Value) { components }
 }
 
-/// HSB: Hue(man), Saturation, Brightness in RGB color space
+/// HSB: Hue, Saturation, Brightness in RGB color space
 public struct HSB<Value: BinaryFloatingPoint & Sendable>: ComponentConvertible {
-  /// Hue(man)
+  /// Hue
   public var h: Value
 
   /// Saturation
@@ -119,9 +119,9 @@ extension HSLEncodable {
   public var components: (Value, Value, Value) { (h, s, l) }
 }
 
-/// HSLuv: Hue(man), Saturation, Lightness (HSLuv)
+/// HSLuv: Hue, Saturation, Lightness (HSLuv)
 public struct HSLuv<Value: BinaryFloatingPoint & Sendable>: HSLEncodable {
-  /// Hue(man)
+  /// Hue
   public var h: Value
 
   /// Saturation

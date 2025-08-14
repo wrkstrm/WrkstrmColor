@@ -86,16 +86,13 @@ enum Snapshot {
           fatalError("Current tuple is missing at \(hex):\(tag)")
         }
 
-        for i in [0...2] {
-          guard let stableChannel = stableTuple[i].first,
-            let currentChannel = currentTuple[i].first
-          else {
-            fatalError("Current channel is missing at \(hex):\(tag):\(i)")
-          }
+          for i in 0...2 {
+            let stableChannel = stableTuple[i]
+            let currentChannel = currentTuple[i]
 
-          block(hex, tag, stableTuple, currentTuple, stableChannel, currentChannel)
+            block(hex, tag, stableTuple, currentTuple, stableChannel, currentChannel)
+          }
         }
       }
     }
   }
-}

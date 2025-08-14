@@ -1,6 +1,6 @@
 # WrkstrmColor
 
-[![wrkstrm-color](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml)
+[![wrkstrm-color](https://github.com/wrkstrm/WrkstrmColor/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmColor/actions/workflows/wrkstrm-color-build.yml)
 
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 

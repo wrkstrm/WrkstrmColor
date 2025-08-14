@@ -84,9 +84,9 @@ extension Gradient {
     // Calculate new components based on the ratio and deltas.
     let aNewComponent = ratioCalculator(delta: aRange, ratio: ratio)
     let bNewComponent = ratioCalculator(delta: bRange, ratio: ratio)
-    let cNewComponents = ratioCalculator(delta: cRange, ratio: ratio)
+    let cNewComponent = ratioCalculator(delta: cRange, ratio: ratio)
 
-    let newComponents = (a: aNewComponent, b: bNewComponent, c: cNewComponents)
+    let newComponents = (a: aNewComponent, b: bNewComponent, c: cNewComponent)
     return S.scaled(newComponents: newComponents)
   }
 
