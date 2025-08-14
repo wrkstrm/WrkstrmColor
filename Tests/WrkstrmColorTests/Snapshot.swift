@@ -26,10 +26,11 @@ enum Snapshot {
 
   static var stable: SnapshotDictionary = {
     guard
-      let jsonData = JSON.Resource.load(fileName: "snapshot-rev4"),
+      let url = Bundle.module.url(forResource: "snapshot-rev4", withExtension: "json"),
+      let jsonData = try? Data(contentsOf: url),
       let jsonResult = try? JSONSerialization.jsonObject(
         with: jsonData,
-        options: .fragmentsAllowed,
+        options: .fragmentsAllowed
       ) as? SnapshotDictionary
     else {
       fatalError("Snapshot JSON file is missing")
