@@ -4,78 +4,78 @@ import Testing
 @testable import WrkstrmColor
 
 #if canImport(UIKit)
-  import CoreGraphics
+import CoreGraphics
 
-  @Suite
-  struct UIKitTests {
-    let rgbRangeTolerance: CGFloat = 0.000_000_000_01
+@Suite
+struct UIKitTests {
+  let rgbRangeTolerance: CGFloat = 0.000_000_000_01
 
-    @Test
-    func testUIColorRGBRangeTolerance() {
-      for h in stride(from: 0, through: 360, by: 5) {
-        for s in stride(from: 0, through: 100, by: 5) {
-          for l in stride(from: 0, through: 100, by: 5) {
-            let color: UIColor = .init(
-              hsluv: .init(
-                h: CGFloat(h),
-                s: CGFloat(s),
-                l: CGFloat(l),
-              ), alpha: 1.0,
+  @Test
+  func testUIColorRGBRangeTolerance() {
+    for h in stride(from: 0, through: 360, by: 5) {
+      for s in stride(from: 0, through: 100, by: 5) {
+        for l in stride(from: 0, through: 100, by: 5) {
+          let color: UIColor = .init(
+            hsluv: .init(
+              h: CGFloat(h),
+              s: CGFloat(s),
+              l: CGFloat(l),
+            ), alpha: 1.0,
+          )
+
+          #expect(color != nil)
+
+          let tRgb = color.rgbaComponents().rgb
+          let rgb = [tRgb.r, tRgb.g, tRgb.b]
+
+          for channel in rgb {
+            #expect(
+              channel > -rgbRangeTolerance,
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
             )
-
-            #expect(color != nil)
-
-            let tRgb = color.rgbaComponents().rgb
-            let rgb = [tRgb.r, tRgb.g, tRgb.b]
-
-            for channel in rgb {
-              #expect(
-                channel > -rgbRangeTolerance,
-                "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
-              )
-              #expect(
-                channel <= 1 + rgbRangeTolerance,
-                "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
-              )
-            }
+            #expect(
+              channel <= 1 + rgbRangeTolerance,
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
+            )
           }
         }
       }
     }
   }
+}
 
 #elseif os(macOS)
 
-  @Suite
-  struct AppKitTests {
-    let rgbRangeTolerance = 0.000_000_000_01
+@Suite
+struct AppKitTests {
+  let rgbRangeTolerance = 0.000_000_000_01
 
-    @Test
-    func testNSColorRGBRangeTolerance() {
-      for h in stride(from: CGFloat(0.0), through: 360, by: 5) {
-        for s in stride(from: CGFloat(0.0), through: 100, by: 5) {
-          for l in stride(from: CGFloat(0.0), through: 100, by: 5) {
-            let color: NSColor = .init(hue: h, saturation: s, lightness: l, alpha: 1.0)
+  @Test
+  func testNSColorRGBRangeTolerance() {
+    for h in stride(from: CGFloat(0.0), through: 360, by: 5) {
+      for s in stride(from: CGFloat(0.0), through: 100, by: 5) {
+        for l in stride(from: CGFloat(0.0), through: 100, by: 5) {
+          let color: NSColor = .init(hue: h, saturation: s, lightness: l, alpha: 1.0)
 
-            #expect(color != nil)
+          #expect(color != nil)
 
-            let tRGBA = color.rgbaComponents()
-            let rgb = [tRGBA.rgb.r, tRGBA.rgb.g, tRGBA.rgb.b]
+          let tRGBA = color.rgbaComponents()
+          let rgb = [tRGBA.rgb.r, tRGBA.rgb.g, tRGBA.rgb.b]
 
-            for channel in rgb {
-              #expect(
-                channel > CGFloat(-rgbRangeTolerance),
-                "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
-              )
-              #expect(
-                channel <= CGFloat(1 + rgbRangeTolerance),
-                "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
-              )
-            }
+          for channel in rgb {
+            #expect(
+              channel > CGFloat(-rgbRangeTolerance),
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
+            )
+            #expect(
+              channel <= CGFloat(1 + rgbRangeTolerance),
+              "HSLuv: \([h, s, l]) -> RGB: \(rgb)",
+            )
           }
         }
       }
     }
   }
+}
 
 #endif

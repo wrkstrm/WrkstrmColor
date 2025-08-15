@@ -36,62 +36,62 @@ extension RGBEncodable {
 }
 
 #if canImport(UIKit)
-  import UIKit
+import UIKit
 
-  extension UIColor: Scalable {
-    public static func scaled(newComponents: (CGFloat, CGFloat, CGFloat)) -> Self {
-      Self(red: newComponents.0, green: newComponents.1, blue: newComponents.2, alpha: 1.0)
-    }
-
-    public var values: (CGFloat, CGFloat, CGFloat) { components }
+extension UIColor: Scalable {
+  public static func scaled(newComponents: (CGFloat, CGFloat, CGFloat)) -> Self {
+    Self(red: newComponents.0, green: newComponents.1, blue: newComponents.2, alpha: 1.0)
   }
 
-  extension UIColor: RGBEncodable {
-    public var components: (CGFloat, CGFloat, CGFloat) {
-      let rgb = rgbaComponents().rgb
-      return (CGFloat(rgb.r), CGFloat(rgb.g), CGFloat(rgb.b))
-    }
+  public var values: (CGFloat, CGFloat, CGFloat) { components }
+}
 
-    public func rgbComponents() -> (CGFloat, CGFloat, CGFloat) { values }
+extension UIColor: RGBEncodable {
+  public var components: (CGFloat, CGFloat, CGFloat) {
+    let rgb = rgbaComponents().rgb
+    return (CGFloat(rgb.r), CGFloat(rgb.g), CGFloat(rgb.b))
   }
 
-  extension UIColor {
-    static let redGradient = GradientDescriptor<UIColor>(
-      count: 10,
-      aRange: Delta(start: 1, end: 0),
-      bRange: Delta(start: 0, end: 0),
-      cRange: Delta(start: 0, end: 0),
-    )
+  public func rgbComponents() -> (CGFloat, CGFloat, CGFloat) { values }
+}
+
+extension UIColor {
+  static let redGradient = GradientDescriptor<UIColor>(
+    count: 10,
+    aRange: Delta(start: 1, end: 0),
+    bRange: Delta(start: 0, end: 0),
+    cRange: Delta(start: 0, end: 0),
+  )
+}
+
+extension UIFont {
+  private var weight: CGFloat {
+    guard
+      let traits = fontDescriptor.object(forKey: .traits)
+        as? [UIFontDescriptor.AttributeName: Any],
+      let weight = traits[.traits] as? CGFloat
+    else { return 0 }
+    return weight
   }
 
-  extension UIFont {
-    private var weight: CGFloat {
-      guard
-        let traits = fontDescriptor.object(forKey: .traits)
-          as? [UIFontDescriptor.AttributeName: Any],
-        let weight = traits[.traits] as? CGFloat
-      else { return 0 }
-      return weight
-    }
+  var isBold: Bool { fontDescriptor.symbolicTraits.contains(.traitBold) || weight > 0.0 }
+}
 
-    var isBold: Bool { fontDescriptor.symbolicTraits.contains(.traitBold) || weight > 0.0 }
+extension RGBEncodable {
+  /// Determines whether the contrast between this `UIColor` and the provided
+  /// `UIColor` is sufficient to meet the recommendations of W3's WCAG 2.0.
+  ///
+  /// The recommendation is that the contrast ratio between text and its
+  /// background should be at least 4.5:1 for small text and at least
+  /// 3.0:1 for larger text.
+  func sufficientContrast(
+    to other: some RGBEncodable,
+    with font: UIFont = UIFont.preferredFont(forTextStyle: .body),
+  ) -> Bool {
+    let pointSizeThreshold: Value = font.isBold ? 14.0 : 18.0
+    let contrastRatioThreshold: Value =
+      Value(font.fontDescriptor.pointSize) < pointSizeThreshold ? 4.5 : 3.0
+    return contrastRatio(to: other) > contrastRatioThreshold
   }
-
-  extension RGBEncodable {
-    /// Determines whether the contrast between this `UIColor` and the provided
-    /// `UIColor` is sufficient to meet the recommendations of W3's WCAG 2.0.
-    ///
-    /// The recommendation is that the contrast ratio between text and its
-    /// background should be at least 4.5:1 for small text and at least
-    /// 3.0:1 for larger text.
-    func sufficientContrast(
-      to other: some RGBEncodable,
-      with font: UIFont = UIFont.preferredFont(forTextStyle: .body),
-    ) -> Bool {
-      let pointSizeThreshold: Value = font.isBold ? 14.0 : 18.0
-      let contrastRatioThreshold: Value =
-        Value(font.fontDescriptor.pointSize) < pointSizeThreshold ? 4.5 : 3.0
-      return contrastRatio(to: other) > contrastRatioThreshold
-    }
-  }
+}
 #endif

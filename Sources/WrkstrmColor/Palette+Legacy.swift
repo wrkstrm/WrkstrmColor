@@ -2,7 +2,7 @@ import Foundation
 
 // canImport(CoreGraphics)
 #if canImport(CoreGraphics)
-  import CoreGraphics
+import CoreGraphics
 #endif
 
 extension Palette {
@@ -98,145 +98,145 @@ extension Palette {
 }
 
 #if canImport(SwiftUI)
-  import SwiftUI
+import SwiftUI
+
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+extension Palette {
+  @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+  static func hsluv(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> Color {
+    let color: HSLuv<CGFloat> =
+      hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
+    return Color(hsluv: color, opacity: 1)
+  }
 
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-  extension Palette {
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    static func hsluv(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> Color {
-      let color: HSLuv<CGFloat> =
-        hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
-      return Color(hsluv: color, opacity: 1)
-    }
-
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    static func color(
-      for wrkstrm: Wrkstrm,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> Color {
-      color(
-        for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
-        index: index,
-        count: count,
-        reversed: reversed,
-      )
-    }
-
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    static func color(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> Color {
-      let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
-      return Color(
-        red: color.r / 255.0,
-        green: color.g / 255.0,
-        blue: color.b / 255.0,
-        opacity: 1.0,
-      )
-    }
+  static func color(
+    for wrkstrm: Wrkstrm,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> Color {
+    color(
+      for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
+      index: index,
+      count: count,
+      reversed: reversed,
+    )
   }
+
+  @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+  static func color(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> Color {
+    let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
+    return Color(
+      red: color.r / 255.0,
+      green: color.g / 255.0,
+      blue: color.b / 255.0,
+      opacity: 1.0,
+    )
+  }
+}
 #endif  // canImport(SwiftUI)
 
 #if canImport(UIKit)
-  import UIKit
+import UIKit
 
-  extension Palette {
-    public static func hsluv(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> UIColor {
-      let color: HSLuv<CGFloat> =
-        hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
-      return UIColor(hsluv: color, alpha: 1)
-    }
-
-    public static func color(
-      for wrkstrm: Wrkstrm,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> UIColor {
-      color(
-        for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
-        index: index,
-        count: count,
-        reversed: reversed,
-      )
-    }
-
-    public static func color(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> UIColor {
-      let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
-      return UIColor(
-        red: CGFloat(color.r / 255.0),
-        green: CGFloat(color.g / 255.0),
-        blue: CGFloat(color.b / 255.0),
-        alpha: 1.0,
-      )
-    }
+extension Palette {
+  public static func hsluv(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> UIColor {
+    let color: HSLuv<CGFloat> =
+      hsluvGradient(for: gradient, index: index, count: count, reversed: reversed)
+    return UIColor(hsluv: color, alpha: 1)
   }
+
+  public static func color(
+    for wrkstrm: Wrkstrm,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> UIColor {
+    color(
+      for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
+      index: index,
+      count: count,
+      reversed: reversed,
+    )
+  }
+
+  public static func color(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> UIColor {
+    let color = rgb(for: gradient, index: index, count: count, reversed: reversed)
+    return UIColor(
+      red: CGFloat(color.r / 255.0),
+      green: CGFloat(color.g / 255.0),
+      blue: CGFloat(color.b / 255.0),
+      alpha: 1.0,
+    )
+  }
+}
 #endif
 
 #if os(OSX)
-  import Cocoa
+import Cocoa
 
-  extension Palette {
-    static func hsluv(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> NSColor {
-      let color: HSLuv<CGFloat> = hsluvGradient(
-        for: gradient, index: index, count: count, reversed: reversed,
-      )
-      return NSColor(hsluv: color, alpha: 1)
-    }
-
-    static func color(
-      for wrkstrm: Wrkstrm,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> NSColor {
-      color(
-        for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
-        index: index,
-        count: count,
-        reversed: reversed,
-      )
-    }
-
-    static func color(
-      for gradient: Gradient,
-      index: Int,
-      count: Int,
-      reversed: Bool = false,
-    ) -> NSColor {
-      let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
-      return NSColor(
-        red: CGFloat(color.r / 255.0),
-        green: CGFloat(color.g / 255.0),
-        blue: CGFloat(color.b / 255.0),
-        alpha: 1.0,
-      )
-    }
+extension Palette {
+  static func hsluv(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> NSColor {
+    let color: HSLuv<CGFloat> = hsluvGradient(
+      for: gradient, index: index, count: count, reversed: reversed,
+    )
+    return NSColor(hsluv: color, alpha: 1)
   }
+
+  static func color(
+    for wrkstrm: Wrkstrm,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> NSColor {
+    color(
+      for: Gradient(rawValue: wrkstrm.rawValue)!,  // swiftlint:disable:this force_unwrapping
+      index: index,
+      count: count,
+      reversed: reversed,
+    )
+  }
+
+  static func color(
+    for gradient: Gradient,
+    index: Int,
+    count: Int,
+    reversed: Bool = false,
+  ) -> NSColor {
+    let color = Self.rgb(for: gradient, index: index, count: count, reversed: reversed)
+    return NSColor(
+      red: CGFloat(color.r / 255.0),
+      green: CGFloat(color.g / 255.0),
+      blue: CGFloat(color.b / 255.0),
+      alpha: 1.0,
+    )
+  }
+}
 
 #endif
