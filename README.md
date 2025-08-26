@@ -1,6 +1,6 @@
 # WrkstrmColor
 
-[![wrkstrm-color](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmColors/actions/workflows/wrkstrm-color-build.yml)
+[![wrkstrm-color](https://github.com/wrkstrm/WrkstrmColor/actions/workflows/wrkstrm-color-build.yml/badge.svg)](https://github.com/wrkstrm/WrkstrmColor/actions/workflows/wrkstrm-color-build.yml)
 
 [![MIT License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
@@ -10,20 +10,22 @@ The `wrkstrm` port of [HSLuvSwift](http://www.hsluv.org) (revision 4), courtesy 
 
 ## USAGE
 
-This framework adds a single initializer on the OS-specific color class to create a color from HSLuv parameters. The initializer takes the same parameters on both macOS and iOS.
+This package extends SwiftUI `Color` as well as `NSColor` and `UIColor` with initializers that create a color from HSLuv or HPLuv values.
 
 ```swift
-// macOS
-let color: NSColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
+// SwiftUI
+let color: Color = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, opacity: 1.0)
 
-// iOS
-let color: UIColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alpha: 1.0)
+// UIKit
+let color: UIColor = .init(hsluv: .init(h: 360.0, s: 100.0, l: 100.0), alpha: 1.0)
+
+// AppKit
+let color: NSColor = .init(hpluv: .init(h: 360.0, s: 100.0, l: 100.0), alpha: 1.0)
 ```
 
 ## TODO
 
 * Finish HPLuv implementation
-* Add usage documentation
 
 ## License
 
