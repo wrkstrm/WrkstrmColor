@@ -173,4 +173,4 @@ extension NSColor {
     return (HSB(h: hue, s: saturation, b: brightness), alpha: alpha)
   }
 }
-#endif  // canImport(SwiftUI)
+#endif  // os(OSX)
