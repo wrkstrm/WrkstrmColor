@@ -22,8 +22,8 @@ let color: UIColor = .init(hue: 360.0, saturation: 100.0, lightness: 100.0, alph
 
 ## TODO
 
-* Finish HPLuv implementation
-* Add usage documentation
+- Finish HPLuv implementation
+- Add usage documentation
 
 ## License
 
