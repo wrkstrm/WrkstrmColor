@@ -24,7 +24,7 @@ jobs:
       id: cache-spm
       uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-spm-WrkstrmColor-${{ hashFiles('**/Package.resolved')
+        key: ${{ runner.os }}-spm-WrkstrmColor-${{ hashFiles('**/Package.resolved', '**/Package.swift')
           }}
         path: apple/WrkstrmColor/.build
         restore-keys: ${{ runner.os }}-spm-WrkstrmColor-
