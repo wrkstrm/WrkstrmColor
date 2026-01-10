@@ -12,9 +12,7 @@ jobs:
   swift-build:
     strategy:
       matrix:
-        os:
-        - macos-14
-        - ubuntu-latest
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4

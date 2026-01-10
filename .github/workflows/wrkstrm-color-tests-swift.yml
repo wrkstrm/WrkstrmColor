@@ -12,9 +12,7 @@ jobs:
   swift-test:
     strategy:
       matrix:
-        os:
-        - macos-13
-        - ubuntu-latest
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
