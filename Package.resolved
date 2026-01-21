@@ -20,9 +20,9 @@
       }
     },
     {
-      "identity" : "wrkstrmlog",
+      "identity" : "commonlog",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wrkstrm/WrkstrmLog.git",
+      "location" : "https://github.com/wrkstrm/common-log.git",
       "state" : {
         "revision" : "f03a3f99c477e3c5c62d96f2833c2ac171390c59",
         "version" : "2.2.4"
